@@ -61,6 +61,7 @@
       display: flex;
       flex-direction: column;
       line-height: 1;
+      text-decoration: none;
     }
     .nav-logo .kanji {
       font-family: 'Noto Serif JP', serif;
@@ -688,7 +689,7 @@
     .festival-kanji {
       font-family: 'Noto Serif JP', serif;
       font-size: 1rem;
-      color: var(--mid);
+      color: #5a4a30;
       letter-spacing: 0.2em;
       margin-bottom: 1rem;
       display: block;
@@ -767,7 +768,7 @@
     .intro-tagline {
       font-family: 'Playfair Display', serif;
       font-size: 0.9rem;
-      color: var(--mid);
+      color: #5a4a30;
       margin-bottom: 1.5rem;
       letter-spacing: 0.05em;
     }
@@ -793,7 +794,20 @@
 
 /* ── Responsive ── */
     @media (max-width: 900px) {
-      nav ul { display: none; }
+      nav {
+        flex-wrap: wrap;
+        padding: 0.75rem 1.5rem;
+        gap: 0.25rem;
+      }
+      nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        width: 100%;
+        padding: 0.5rem 0 0.25rem;
+        border-top: 1px solid rgba(201,168,76,0.2);
+        justify-content: center;
+      }
       .intro-grid,
       .history-content,
       .experience-grid,
@@ -806,16 +820,59 @@
       .food-grid { grid-template-columns: 1fr; }
       .intro-stats { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── Accessibility ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      z-index: 999;
+      border: 2px solid var(--ink);
+      border-radius: 0 0 4px 4px;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    [tabindex="0"]:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .nav-logo {
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <span class="kanji">屋台</span>
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="Yatai — return to top">
+    <span class="kanji" lang="ja">屋台</span>
     <span class="romaji">Yatai</span>
-  </div>
+  </a>
   <ul>
     <li><a href="#intro">About</a></li>
     <li><a href="#history">History</a></li>
@@ -827,11 +884,12 @@
 </nav>
 
 <!-- HERO -->
+<main id="main-content">
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
 
-  <!-- Lanterns -->
-  <div class="lanterns">
+  <!-- Lanterns (decorative) -->
+  <div class="lanterns" aria-hidden="true">
     <div class="lantern-wrap">
       <div class="lantern-string lantern-string--s"></div>
       <div class="lantern-body lantern-body--l">祭</div>
@@ -848,24 +906,24 @@
 
   <div class="hero-content">
     <p class="hero-eyebrow">Japan's Living Street Food Culture</p>
-    <span class="hero-kanji">屋台</span>
+    <span class="hero-kanji" aria-hidden="true" lang="ja">屋台</span>
     <h1 class="hero-title">Yatai — The Art of the Food Stall</h1>
     <p class="hero-subtitle">
       Since the Edo period, yatai have been the beating heart of Japanese street life—
       portable kitchens that fill the night with steam, sizzle, and the warmth of community.
     </p>
-    <a href="#intro" class="btn">Discover More</a>
+    <a href="#intro" class="btn" aria-label="Discover more about Yatai">Discover More</a>
   </div>
 </section>
 
 <!-- INTRO -->
 <section class="intro" id="intro">
-  <span class="kanji-watermark kanji-watermark--intro">食</span>
+  <span class="kanji-watermark kanji-watermark--intro" aria-hidden="true">食</span>
   <div class="section-container">
     <div class="intro-grid">
       <div class="intro-text">
         <span class="section-label">What is Yatai?</span>
-        <h2 class="section-title">小さな厨房、<br>大きな魂</h2>
+        <h2 class="section-title" lang="ja">小さな厨房、<br>大きな魂</h2>
         <p class="intro-tagline">
           "Small Kitchen, Great Soul"
         </p>
@@ -912,7 +970,7 @@
 
 <!-- HISTORY -->
 <section class="history" id="history">
-  <span class="kanji-watermark kanji-watermark--history">歴</span>
+  <span class="kanji-watermark kanji-watermark--history" aria-hidden="true">歴</span>
   <div class="section-container">
     <div class="history-section-header">
       <span class="section-label">A Living History</span>
@@ -958,7 +1016,7 @@
 
 <!-- FOODS -->
 <section class="foods" id="foods">
-  <span class="kanji-watermark kanji-watermark--foods">味</span>
+  <span class="kanji-watermark kanji-watermark--foods" aria-hidden="true">味</span>
   <div class="foods-header">
     <span class="section-label">What's Cooking</span>
     <h2 class="section-title">The Flavors of Yatai</h2>
@@ -974,7 +1032,7 @@
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🐙</span>
-        <div class="food-kanji">たこ焼き</div>
+        <div class="food-kanji" lang="ja">たこ焼き</div>
         <div class="food-name">Takoyaki</div>
         <div class="food-region">Osaka · Nationwide</div>
         <p class="food-desc">
@@ -990,14 +1048,14 @@
           <span class="food-tag">Osaka Soul Food</span>
         </div>
       </div>
-      <div class="food-card-accent">蛸</div>
+      <div class="food-card-accent" aria-hidden="true">蛸</div>
     </div>
 
     <!-- Yakitori -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🍢</span>
-        <div class="food-kanji">焼き鳥</div>
+        <div class="food-kanji" lang="ja">焼き鳥</div>
         <div class="food-name">Yakitori</div>
         <div class="food-region">Nationwide</div>
         <p class="food-desc">
@@ -1013,14 +1071,14 @@
           <span class="food-tag">Skewered</span>
         </div>
       </div>
-      <div class="food-card-accent">鳥</div>
+      <div class="food-card-accent" aria-hidden="true">鳥</div>
     </div>
 
     <!-- Ramen -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🍜</span>
-        <div class="food-kanji">ラーメン</div>
+        <div class="food-kanji" lang="ja">ラーメン</div>
         <div class="food-name">Yatai Ramen</div>
         <div class="food-region">Fukuoka (Hakata)</div>
         <p class="food-desc">
@@ -1036,14 +1094,14 @@
           <span class="food-tag">Fukuoka Classic</span>
         </div>
       </div>
-      <div class="food-card-accent">麺</div>
+      <div class="food-card-accent" aria-hidden="true">麺</div>
     </div>
 
     <!-- Okonomiyaki -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🥞</span>
-        <div class="food-kanji">お好み焼き</div>
+        <div class="food-kanji" lang="ja">お好み焼き</div>
         <div class="food-name">Okonomiyaki</div>
         <div class="food-region">Osaka · Hiroshima</div>
         <p class="food-desc">
@@ -1059,14 +1117,14 @@
           <span class="food-tag">Griddle</span>
         </div>
       </div>
-      <div class="food-card-accent">焼</div>
+      <div class="food-card-accent" aria-hidden="true">焼</div>
     </div>
 
     <!-- Taiyaki -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🐟</span>
-        <div class="food-kanji">たい焼き</div>
+        <div class="food-kanji" lang="ja">たい焼き</div>
         <div class="food-name">Taiyaki</div>
         <div class="food-region">Nationwide</div>
         <p class="food-desc">
@@ -1082,14 +1140,14 @@
           <span class="food-tag">Anko</span>
         </div>
       </div>
-      <div class="food-card-accent">鯛</div>
+      <div class="food-card-accent" aria-hidden="true">鯛</div>
     </div>
 
     <!-- Yakisoba -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🍝</span>
-        <div class="food-kanji">焼きそば</div>
+        <div class="food-kanji" lang="ja">焼きそば</div>
         <div class="food-name">Yakisoba</div>
         <div class="food-region">Nationwide</div>
         <p class="food-desc">
@@ -1105,14 +1163,14 @@
           <span class="food-tag">Festival Staple</span>
         </div>
       </div>
-      <div class="food-card-accent">炒</div>
+      <div class="food-card-accent" aria-hidden="true">炒</div>
     </div>
 
     <!-- Oden -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🍲</span>
-        <div class="food-kanji">おでん</div>
+        <div class="food-kanji" lang="ja">おでん</div>
         <div class="food-name">Oden</div>
         <div class="food-region">Nationwide · Winter</div>
         <p class="food-desc">
@@ -1128,14 +1186,14 @@
           <span class="food-tag">Dashi Broth</span>
         </div>
       </div>
-      <div class="food-card-accent">煮</div>
+      <div class="food-card-accent" aria-hidden="true">煮</div>
     </div>
 
     <!-- Karaage -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🍗</span>
-        <div class="food-kanji">唐揚げ</div>
+        <div class="food-kanji" lang="ja">唐揚げ</div>
         <div class="food-name">Karaage</div>
         <div class="food-region">Nationwide</div>
         <p class="food-desc">
@@ -1151,14 +1209,14 @@
           <span class="food-tag">Street Snack</span>
         </div>
       </div>
-      <div class="food-card-accent">揚</div>
+      <div class="food-card-accent" aria-hidden="true">揚</div>
     </div>
 
     <!-- Ikayaki -->
     <div class="food-card">
       <div class="food-card-inner">
         <span class="food-emoji">🦑</span>
-        <div class="food-kanji">イカ焼き</div>
+        <div class="food-kanji" lang="ja">イカ焼き</div>
         <div class="food-name">Ikayaki</div>
         <div class="food-region">Osaka · Coastal Regions</div>
         <p class="food-desc">
@@ -1174,7 +1232,7 @@
           <span class="food-tag">Coastal</span>
         </div>
       </div>
-      <div class="food-card-accent">烏</div>
+      <div class="food-card-accent" aria-hidden="true">烏</div>
     </div>
 
   </div>
@@ -1245,7 +1303,7 @@
 
       <div>
         <div class="etiquette-card">
-          <h3>礼儀作法</h3>
+          <h3 lang="ja">礼儀作法</h3>
           <span class="subtitle">Yatai Etiquette</span>
           <ul class="etiquette-list">
             <li>Wait to be seated, even if the stall looks empty — the chef controls seating.</li>
@@ -1267,7 +1325,7 @@
 
 <!-- REGIONS -->
 <section class="regions" id="regions">
-  <span class="kanji-watermark kanji-watermark--regions">地</span>
+  <span class="kanji-watermark kanji-watermark--regions" aria-hidden="true">地</span>
   <div class="section-container">
     <span class="section-label">Where to Go</span>
     <h2 class="section-title">Yatai Regions</h2>
@@ -1279,7 +1337,7 @@
     <div class="regions-list">
 
       <div class="region-card">
-        <span class="region-name-jp">福岡</span>
+        <span class="region-name-jp" lang="ja">福岡</span>
         <span class="region-name-en">Fukuoka</span>
         <p class="region-desc">
           Japan's undisputed yatai capital. Over 100 licensed stalls cluster along the Naka
@@ -1298,7 +1356,7 @@
       </div>
 
       <div class="region-card">
-        <span class="region-name-jp">大阪</span>
+        <span class="region-name-jp" lang="ja">大阪</span>
         <span class="region-name-en">Osaka</span>
         <p class="region-desc">
           Osaka's identity is inseparable from food — the city's motto is literally
@@ -1317,7 +1375,7 @@
       </div>
 
       <div class="region-card">
-        <span class="region-name-jp">京都</span>
+        <span class="region-name-jp" lang="ja">京都</span>
         <span class="region-name-en">Kyoto</span>
         <p class="region-desc">
           Kyoto's yatai culture is more refined and seasonal, concentrated around the banks
@@ -1335,7 +1393,7 @@
       </div>
 
       <div class="region-card">
-        <span class="region-name-jp">東京</span>
+        <span class="region-name-jp" lang="ja">東京</span>
         <span class="region-name-en">Tokyo</span>
         <p class="region-desc">
           Permanent yatai are rare in Tokyo due to strict urban regulations, but the city
@@ -1372,7 +1430,7 @@
       <div class="festival-card">
         <span class="festival-month">January – February</span>
         <div class="festival-name">Sapporo Snow Festival</div>
-        <span class="festival-kanji">さっぽろ雪まつり</span>
+        <span class="festival-kanji" lang="ja">さっぽろ雪まつり</span>
         <p class="festival-desc">
           Millions visit Hokkaido's capital to see its famous snow sculptures. Yatai serve
           hot soups, grilled corn, and Jingisukan lamb barbecue to warm the crowds in the
@@ -1384,7 +1442,7 @@
       <div class="festival-card">
         <span class="festival-month">March – April</span>
         <div class="festival-name">Hanami Season</div>
-        <span class="festival-kanji">花見</span>
+        <span class="festival-kanji" lang="ja">花見</span>
         <p class="festival-desc">
           Cherry blossom viewing is Japan's most beloved seasonal ritual. Parks and riverbanks
           fill with picnickers, and yatai spring up overnight to serve the crowds. Sakura
@@ -1396,7 +1454,7 @@
       <div class="festival-card">
         <span class="festival-month">July</span>
         <div class="festival-name">Gion Matsuri</div>
-        <span class="festival-kanji">祇園祭</span>
+        <span class="festival-kanji" lang="ja">祇園祭</span>
         <p class="festival-desc">
           Kyoto's grandest festival, dating to 869 CE. The Shijo-Kawaramachi area transforms
           into a vast outdoor dining hall. Hundreds of yatai line the streets for three weeks,
@@ -1408,7 +1466,7 @@
       <div class="festival-card">
         <span class="festival-month">August</span>
         <div class="festival-name">Obon &amp; Summer Festivals</div>
-        <span class="festival-kanji">お盆</span>
+        <span class="festival-kanji" lang="ja">お盆</span>
         <p class="festival-desc">
           August is yatai season across Japan. Every neighbourhood holds its local
           <em>bon odori</em> dance festival, complete with yatai selling shaved ice
@@ -1420,7 +1478,7 @@
       <div class="festival-card">
         <span class="festival-month">October – November</span>
         <div class="festival-name">Autumn Leaf Season</div>
-        <span class="festival-kanji">紅葉</span>
+        <span class="festival-kanji" lang="ja">紅葉</span>
         <p class="festival-desc">
           As Japan's mountains turn crimson and gold, yatai shift to heartier autumn menus:
           roasted sweet potatoes (<em>yakiimo</em>), chestnut rice, warm sake, and the first
@@ -1432,7 +1490,7 @@
       <div class="festival-card">
         <span class="festival-month">December – January</span>
         <div class="festival-name">Year-End Festivals</div>
-        <span class="festival-kanji">年末年始</span>
+        <span class="festival-kanji" lang="ja">年末年始</span>
         <p class="festival-desc">
           <em>Toshi-no-ichi</em> (year-end markets) and New Year shrine visits come with
           their own yatai traditions. Hot amazake, grilled mochi, and warming oden are
@@ -1445,9 +1503,11 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
-  <span class="footer-kanji">屋台</span>
+  <span class="footer-kanji" aria-hidden="true" lang="ja">屋台</span>
   <p class="footer-tagline">"The best conversations happen at small tables."</p>
   <ul class="footer-links">
     <li><a href="#intro">About Yatai</a></li>
