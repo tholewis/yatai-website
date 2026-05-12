@@ -4,7 +4,7 @@ A single-page website celebrating the culture, history, and flavours of Japanese
 
 ## Live Demo
 
-Open `index.html` in any modern browser — no build step required.
+Open `index.html` in any modern browser — no build step required. Or go to https://tholewis.github.io/yatai-website/ to view the website hosted by GitHub Pages.
 
 ## Features
 
