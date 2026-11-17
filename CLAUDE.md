@@ -6,8 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a zero-dependency static website about Japanese yatai (屋台), the food stalls. It covers how a stall is built and run, the history of stalls, and the food they cook. It is not a travel guide. The whole site is a single file, `index.html` (~600 lines of HTML, embedded CSS and inline SVG). There is no build step, no package manager and no JavaScript.
 
-`designs/` holds the four design proposals the current site was chosen from. `designs/c-techo.html` is the one that became `index.html`. The others are kept for reference only and are not linked from the site.
-
 ## Running the Site
 
 Open `index.html` directly in a browser:
@@ -18,18 +16,17 @@ open index.html
 
 ## Content rules
 
-- **Nothing made up.** Every factual claim carries a numbered citation (`<sup class="cite"><a href="#src-N">N</a></sup>`) that points to the Sources list (`#sources`, items `id="src-N"`).
-- **Adding a source:** append a new `<li id="src-N">` to the list. Existing numbers are referenced throughout, so don't reorder the list.
+- **Nothing made up.** The page has no visible citations, but every fact was checked against a source when it was written. New facts need a reliable source too, even though the citation isn't shown.
 - **Traditions:** where a story is a tradition rather than a record, the text says so ("said to", "credited with", "tradition links").
 
 ## Architecture
 
-**Sections** (anchor-linked via `scroll-behavior: smooth`): `#about`, `#stall`, `#history`, `#food` (subsections `#cat-teppan`, `#cat-sumi`, `#cat-nabe`, `#cat-amai`), `#sources`.
+**Sections** (anchor-linked via `scroll-behavior: smooth`): `#about`, `#stall`, `#history`, `#food` (subsections `#cat-teppan`, `#cat-sumi`, `#cat-nabe`, `#cat-amai`).
 
 **Design direction: Techō, a cook's sketchbook.** Squared-paper background, washi-tape strips on cards, handwritten headings, marker highlights (`.hl`).
 
 **CSS** is a single `<style>` block in `<head>`, in this order:
-- **Base layout:** `.wrap` gutter, sticky header, nav, citations, stall parts list, night timeline.
+- **Base layout:** `.wrap` gutter, sticky header, nav, stall parts list, night timeline.
 - **Illustration classes:** `.ill`, `.s`, `.s2` and the rest.
 - **Design tokens and components:** starts at the `:root` block.
   - Colour tokens: `--paper`, `--grid`, `--ink`, `--ink-2`, `--marker`, `--pen`, `--tape`, `--card`.
