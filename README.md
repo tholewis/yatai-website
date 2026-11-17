@@ -68,5 +68,6 @@ Alternative designs that share the same sourced content. They cover how a stall 
 | `designs/a-chochin.html` | **Chōchin**: a stall at night, with hanging paper lanterns and pale line drawings on dark. |
 | `designs/b-fuda.html` | **Fuda**: a cedar menu board, with hanging paper tags brushed in sumi ink and red seal stamps. |
 | `designs/c-techo.html` | **Techō**: a cook's sketchbook, with squared paper, washi tape and marker colour. |
+| `designs/d-mise.html` | **Mise**: an illustrated art book, with a painted front view of a stall, watercolour-textured drawings and sepia line. Inspired by Mateusz Urbanowicz's storefront paintings. The artwork is original. |
 
 Each design is a single file with no JavaScript. `index.html` has not changed.
