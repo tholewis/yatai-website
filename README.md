@@ -58,3 +58,15 @@ open index.html   # macOS
 ## License
 
 MIT — free to use, adapt, and share.
+
+## Redesign proposals (`designs/`)
+
+Three alternative designs share the same rewritten, sourced content. Open any of them directly in a browser:
+
+| File | Direction |
+|---|---|
+| `designs/a-chochin.html` | **Chōchin**: a stall at night, with hanging paper lanterns and the menu set like a printed counter card. |
+| `designs/b-fuda.html` | **Fuda**: a cedar menu board with hanging paper tags brushed in sumi ink and red seal stamps. |
+| `designs/c-matsuri.html` | **Matsuri**: a flat-colour festival poster, with a wave pattern, a noren curtain index and a CSS-only menu filter. |
+
+Each design is a single file with no JavaScript. Each one includes a 25-dish menu grouped by cooking method, a Fukuoka visitor guide, a timeline, a festival calendar and a numbered source list. `index.html` has not changed.
