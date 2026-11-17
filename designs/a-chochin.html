@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yatai · Chōchin</title>
-<meta name="description" content="Japan's yatai food stalls: what they cook, where to find them, and how to eat at one.">
+<meta name="description" content="Japan's yatai food stalls: how they are built and run, where they came from, and the food they cook.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -27,19 +27,37 @@ ul,ol{padding:0}
 .site-head ul{list-style:none;display:flex;gap:1.1rem;justify-content:flex-end;white-space:nowrap}
 .site-head nav a{text-decoration:none;display:inline-block;padding-block:.35rem}
 section[id]{scroll-margin-top:4rem}
-.cite{font-size:.68em;line-height:0;margin-left:.1em;white-space:nowrap}
+.cite{font-size:.68em;line-height:0;margin-left:.15em;white-space:nowrap}
 .cite a{text-decoration:none}
-.dish-meta{font-variant-numeric:tabular-nums}
 .sources ol{padding-left:1.6rem}
 .sources li{overflow-wrap:anywhere}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.stall-fig{max-width:100%;overflow:hidden}
+.parts{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));gap:1rem 1.75rem}
+.parts li{display:grid;grid-template-columns:1.9rem minmax(0,1fr);gap:.6rem}
+.part-n{width:1.7rem;height:1.7rem;border-radius:50%;display:grid;place-items:center;font-size:.85rem;font-weight:700;margin-top:.15rem;font-variant-numeric:tabular-nums}
+.night{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.night-time{font-variant-numeric:tabular-nums}
+.dish-ill{width:7.5rem;max-width:100%}
+@media (max-width:860px){.night{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.site-head ul{justify-content:flex-start}}
+@media (max-width:420px){.night{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 
-/* Layout: a stall at night. Dark indigo street, paper lanterns, the menu read like a printed counter card. */
+.ill{display:block;width:100%;height:auto;color:var(--ill-ink)}
+.ill g.ln,.ill .ln{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ill .s{fill:var(--ill-spot)}.ill .s2{fill:var(--ill-spot2)}.ill .b{fill:var(--ill-bg)}.ill .k{fill:currentColor}.ill .n{fill:none}
+.ill .m{fill:none;stroke:var(--ill-bg);stroke-width:2.6;stroke-linecap:round}
+.ill .z{fill:none;stroke:var(--ill-spot2);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.ill text{font-family:var(--f-display);stroke:none}
+
+
+/* Layout: a stall at night. Dark indigo street, paper lanterns; drawings in pale chalk-like line on dark; menu read like a printed counter card. */
 :root{
   --night:#0f1420; --night-2:#171e2e; --paper:#efe4cf; --paper-dim:#b8af9f;
   --lamp:#e9a640; --lantern:#c4412d; --rule:rgba(239,228,207,.16);
+  --ill-ink:var(--paper); --ill-spot:#c98a32; --ill-spot2:var(--lantern); --ill-bg:var(--night-2);
   --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
   --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
   color-scheme:dark;
@@ -49,17 +67,15 @@ a{color:var(--lamp)}
 :focus-visible{outline:3px solid var(--lamp);outline-offset:3px}
 .skip-link{background:var(--lamp);color:var(--night)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
-.site-head{top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--night) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.site-head{top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--night) 90%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
 .brand{color:var(--paper);font-family:var(--f-display);font-weight:800;font-size:1.35rem}
 .brand-en{font-family:var(--f-body);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--paper-dim);font-weight:500}
-.site-head nav a{color:var(--paper-dim);font-size:.82rem;letter-spacing:.08em}
+.site-head nav a{color:var(--paper-dim);font-size:.85rem;letter-spacing:.06em}
 .site-head nav a:hover{color:var(--paper)}
 
-/* hero */
-.hero{position:relative;overflow:hidden;padding-block:0 4.5rem;background:
-  radial-gradient(60rem 26rem at 70% 0%,rgba(233,166,64,.16),transparent 70%),var(--night)}
-.wire{position:relative;height:1px;background:var(--paper-dim);opacity:.45;margin-top:2.2rem}
-.lanterns{display:flex;justify-content:space-around;gap:.5rem;list-style:none;max-width:72rem;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+.hero{position:relative;overflow:hidden;padding-block:0 4.5rem;background:radial-gradient(60rem 26rem at 70% 0%,rgba(233,166,64,.16),transparent 70%),var(--night)}
+.wire{height:1px;background:var(--paper-dim);opacity:.45;margin-top:2.2rem}
+.lanterns{display:flex;justify-content:space-around;gap:.5rem;list-style:none;max-width:72rem;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .lantern{position:relative;width:clamp(4.2rem,9vw,6.5rem);aspect-ratio:3/4.4;max-width:100%;margin-top:-1px;transform-origin:50% -1.6rem;animation:sway 7s ease-in-out infinite}
 .lantern:nth-child(2){animation-delay:-2.5s;margin-top:1.4rem}
 .lantern:nth-child(3){animation-delay:-4s}
@@ -67,18 +83,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .lantern:nth-child(5){animation-delay:-5.5s;margin-top:.6rem}
 .lantern::before{content:"";position:absolute;left:50%;top:-1.6rem;height:1.6rem;width:1px;background:var(--paper-dim);opacity:.6}
 .lantern .body{position:absolute;inset:.55rem 0;border-radius:46%/50%;display:grid;place-items:center;
-  background:repeating-linear-gradient(180deg,transparent 0 .62rem,rgba(0,0,0,.18) .62rem .7rem),
-  radial-gradient(circle at 50% 45%,#f2b066 0%,var(--lantern) 55%,#7d2618 100%);
+  background:repeating-linear-gradient(180deg,transparent 0 .62rem,rgba(0,0,0,.18) .62rem .7rem),radial-gradient(circle at 50% 45%,#f2b066 0%,var(--lantern) 55%,#7d2618 100%);
   box-shadow:0 0 3.5rem rgba(233,166,64,.35)}
 .lantern .cap{position:absolute;left:22%;right:22%;height:.6rem;background:#1b1b1b;border-radius:2px}
 .lantern .cap.top{top:0}.lantern .cap.bot{bottom:0}
 .lantern .word{writing-mode:vertical-rl;font-family:var(--f-display);font-weight:800;color:#1c0d08;font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.08em;line-height:1}
 @keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
-.hero-text{display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:end;margin-top:3.5rem}
-.hero h1{font-family:var(--f-display);font-weight:800;line-height:.95;margin:0}
+.hero-text{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2.5rem;align-items:end;margin-top:3.5rem}
+.hero h1{font-family:var(--f-display);font-weight:800;line-height:.95}
 .hero h1 .ja{display:block;font-size:clamp(4.5rem,13vw,9.5rem);writing-mode:vertical-rl;letter-spacing:.06em}
-.hero h1 .en{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.hero-copy{max-width:34rem;min-width:0}
+.hero-copy{max-width:36rem;min-width:0}
 .eyebrow{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--lamp);margin-bottom:1rem}
 .hero-lede{font-family:var(--f-display);font-size:clamp(1.4rem,3vw,2.1rem);line-height:1.35;font-weight:500;text-wrap:balance}
 .hero-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
@@ -86,16 +100,43 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn.solid{background:var(--lamp);color:var(--night);font-weight:700}
 .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--night)}
 
-/* sections */
-section.about,section.menu,section.fukuoka,section.history,section.calendar,section.sources{padding-block:clamp(3.5rem,8vw,6.5rem);border-top:1px solid var(--rule)}
+section.about,section.stall,section.history,section.food,section.sources{padding-block:clamp(3.5rem,8vw,6.5rem);border-top:1px solid var(--rule)}
 .sec-title{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;text-wrap:balance;margin-bottom:1.5rem}
 .sec-ja{display:block;font-size:.85rem;letter-spacing:.3em;color:var(--lamp);margin-bottom:.75rem;font-weight:500;font-family:var(--f-body)}
-.sec-lede{color:var(--paper-dim);max-width:40rem;margin-bottom:2.5rem}
+.sec-lede{color:var(--paper-dim);max-width:42rem;margin-bottom:2.5rem}
 .prose{max-width:38rem;display:grid;gap:1.1rem}
 .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:3rem}
+.sub-title{font-family:var(--f-display);font-size:1.45rem;font-weight:700;margin:3.5rem 0 1.25rem}
 
-/* menu */
-.menu{background:var(--night-2)}
+/* the stall */
+.stall{background:var(--night-2)}
+.stall-fig{max-width:52rem;margin:0 auto 2.5rem}
+.stall .ill{--ill-bg:var(--night-2)}
+.part-n{background:var(--paper);color:var(--night)}
+.part-name{font-size:1.02rem}
+.part-ja{color:var(--lamp);font-weight:500;font-size:.85rem;margin-left:.3rem}
+.parts p{color:var(--paper-dim);font-size:.95rem}
+.night li{border-top:2px solid var(--lamp);padding-top:.9rem}
+.night-time{font-family:var(--f-display);font-weight:800;font-size:1.6rem;color:var(--lamp);line-height:1.1}
+.night-what{font-size:1.05rem;margin-block:.3rem}
+.night p:last-child{color:var(--paper-dim);font-size:.95rem}
+.stall-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:3rem}
+.rules>div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;padding-block:.8rem;border-top:1px solid var(--rule)}
+.rules dt{color:var(--lamp);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding-top:.2rem}
+.counter{list-style:none;display:grid;gap:.7rem}
+.counter li{position:relative;padding-left:1.5rem}
+.counter li::before{content:"";position:absolute;left:0;top:.55rem;width:.6rem;height:.75rem;border-radius:46%/50%;background:var(--lantern);box-shadow:0 0 .6rem rgba(233,166,64,.6)}
+.festival{max-width:44rem}
+.festival p{color:var(--paper-dim)}
+
+/* history */
+.timeline{list-style:none;display:grid}
+.timeline li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.5rem;padding-block:1.2rem;border-top:1px solid var(--rule)}
+.tl-year{font-family:var(--f-display);font-weight:800;font-size:1.4rem;color:var(--lamp);line-height:1.25;font-variant-numeric:tabular-nums}
+.tl-title{font-size:1.05rem}
+.timeline p:not(.tl-year){color:var(--paper-dim)}
+
+/* food */
 .cat{margin-top:3.5rem}
 .cat-head{display:flex;gap:1.25rem;align-items:center;padding-bottom:1.1rem;border-bottom:1px solid var(--paper)}
 .cat-kanji{flex:none;display:grid;place-items:center;width:3.6rem;height:4.4rem;border-radius:46%/50%;background:radial-gradient(circle at 50% 45%,#f2b066,var(--lantern) 60%,#7d2618);color:#1c0d08;font-family:var(--f-display);font-weight:800;font-size:1.7rem;box-shadow:0 0 2rem rgba(233,166,64,.25)}
@@ -103,65 +144,31 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
 .cat-ja{white-space:nowrap;display:inline-block;font-size:.95rem;color:var(--lamp);margin-left:.4rem}
 .cat-intro{color:var(--paper-dim);font-size:.95rem}
 .dishes{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:3rem}
-.dish{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.25rem;padding-block:1.4rem;border-bottom:1px dotted var(--rule)}
-.dish-ja{font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.3;color:var(--paper)}
-.dish-name{font-size:1.05rem;font-weight:700;letter-spacing:.02em}
+.dish{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1.25rem;padding-block:1.5rem;border-bottom:1px dotted var(--rule);align-items:start}
+.food .ill{--ill-bg:var(--night)}
+.dish-ja{font-family:var(--f-display);font-weight:700;font-size:1.25rem;line-height:1.3}
+.dish-name{font-size:1.02rem;font-weight:700}
 .dish-gloss{font-weight:400;color:var(--paper-dim);font-size:.9rem}
-.dish-desc{font-size:.95rem;margin-block:.35rem .5rem;color:var(--paper)}
+.dish-desc{font-size:.95rem;margin-block:.35rem .5rem}
 .dish-meta{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lamp)}
 
-/* fukuoka */
-.areas{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.areas li{background:var(--night);padding:1.5rem}
-.area-ja{font-family:var(--f-display);font-size:2.6rem;font-weight:800;line-height:1;color:var(--lamp);display:block;margin-bottom:.5rem}
-.area-name{font-size:1.1rem}
-.areas p{color:var(--paper-dim);font-size:.95rem}
-.areas-note{font-size:.8rem;color:var(--paper-dim);margin-top:.5rem}
-.fk-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;margin-top:3rem}
-.sub-title{font-family:var(--f-display);font-size:1.4rem;margin-bottom:1rem}
-.fk-facts dl{display:grid;gap:0}
-.fk-facts dl>div{display:grid;grid-template-columns:6rem minmax(0,1fr);gap:1rem;padding-block:.8rem;border-top:1px solid var(--rule)}
-.fk-facts dt{color:var(--lamp);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding-top:.2rem}
-.rules{list-style:none;display:grid;gap:.7rem}
-.rules li{position:relative;padding-left:1.5rem}
-.rules li::before{content:"";position:absolute;left:0;top:.55rem;width:.6rem;height:.75rem;border-radius:46%/50%;background:var(--lantern);box-shadow:0 0 .6rem rgba(233,166,64,.6)}
-
-/* history */
-.timeline{list-style:none;display:grid}
-.timeline li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.5rem;padding-block:1.2rem;border-top:1px solid var(--rule)}
-.tl-year{font-family:var(--f-display);font-weight:800;font-size:1.5rem;color:var(--lamp);line-height:1.2;font-variant-numeric:tabular-nums}
-.tl-title{font-size:1.05rem}
-.timeline p{color:var(--paper-dim)}
-.timeline .tl-year{color:var(--lamp)}
-
-/* calendar */
-.cal{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1rem}
-.cal li{padding:1.25rem;border:1px solid var(--rule);background:var(--night-2)}
-.cal-when{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lamp)}
-.cal-what{font-family:var(--f-display);font-size:1.25rem;margin-block:.3rem}
-.cal-text{color:var(--paper-dim);font-size:.95rem}
-
-/* sources + footer */
 .sources{font-size:.9rem}
 .sources ol{display:grid;gap:.35rem;color:var(--paper-dim)}
 .sources a{color:var(--paper)}
 .cite a{color:var(--lamp)}
-.site-foot{padding-block:3rem;border-top:1px solid var(--rule);color:var(--paper-dim);text-align:left}
+.site-foot{padding-block:3rem;border-top:1px solid var(--rule);color:var(--paper-dim)}
 .foot-mark{font-family:var(--f-display);font-size:2.4rem;color:var(--lantern);font-weight:800}
 .foot-small{font-size:.8rem;margin-top:.5rem}
 
-@media (max-width:1024px){
-  .dishes{grid-template-columns:minmax(0,1fr)}
-  .about-grid,.fk-grid{grid-template-columns:minmax(0,1fr);gap:1.5rem}
-}
+@media (max-width:1024px){.dishes{grid-template-columns:minmax(0,1fr)}.about-grid,.stall-grid{grid-template-columns:minmax(0,1fr);gap:1.5rem}}
 @media (max-width:640px){
   .lantern:nth-child(n+4){display:none}
   .lantern{width:4.6rem}
-  .hero-text{grid-template-columns:auto minmax(0,1fr);gap:1.25rem;margin-top:2.5rem;align-items:start}
+  .hero-text{gap:1.25rem;margin-top:2.5rem;align-items:start}
   .hero h1 .ja{font-size:4.2rem}
-  .areas{grid-template-columns:minmax(0,1fr)}
-  .dish{grid-template-columns:minmax(0,1fr);gap:.25rem}
+  .dish{grid-template-columns:5rem minmax(0,1fr);gap:1rem}
   .timeline li{grid-template-columns:minmax(0,1fr);gap:.25rem}
+  .rules>div{grid-template-columns:minmax(0,1fr);gap:.1rem}
   .brand-en{display:none}
 }
 
@@ -172,7 +179,7 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
 <header class="site-head">
   <div class="head-inner">
     <a class="brand" href="#top"><span lang="ja">屋台</span><span class="brand-en">Yatai</span></a>
-    <nav aria-label="Sections"><ul><li><a href="#about">About</a></li><li><a href="#menu">Menu</a></li><li><a href="#fukuoka">Fukuoka</a></li><li><a href="#history">History</a></li><li><a href="#calendar">Calendar</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+    <nav aria-label="Sections"><ul><li><a href="#about">About</a></li><li><a href="#stall">The stall</a></li><li><a href="#history">History</a></li><li><a href="#food">Food</a></li><li><a href="#sources">Sources</a></li></ul></nav>
   </div>
 </header>
 <main id="main">
@@ -186,26 +193,74 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
     <li class="lantern"><span class="cap top"></span><span class="body"><span class="word" lang="ja">餃子</span></span><span class="cap bot"></span></li>
   </ul>
   <div class="wrap hero-text">
-    <h1 id="hero-h"><span class="ja" lang="ja">屋台</span><span class="en">Yatai</span></h1>
+    <h1 id="hero-h"><span class="ja" lang="ja">屋台</span><span class="vh">Yatai</span></h1>
     <div class="hero-copy">
       <p class="eyebrow">Yatai · Japan's food stalls</p>
-      <p class="hero-lede">A counter for about ten, a lantern, and one cook. Here is what they make, where to find them, and how to take a seat.</p>
-      <div class="hero-links"><a class="btn solid" href="#menu">See the menu</a><a class="btn" href="#fukuoka">Plan a night in Fukuoka</a></div>
+      <p class="hero-lede">A roof, a counter, a lantern and one cook. How the stalls are built and run, where they came from, and what they cook.</p>
+      <div class="hero-links"><a class="btn solid" href="#stall">How a stall works</a><a class="btn" href="#food">What they cook</a></div>
     </div>
   </div>
 </section>
 <section id="about" class="about" aria-labelledby="about-h">
   <div class="wrap about-grid">
     <h2 id="about-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">屋台とは</span>What a yatai is</h2>
-    <div class="prose"><p>Yatai (屋台) are small food stalls: a counter, a canopy, a lantern and usually one cook. You find them in two places in Japan today: in long rows at festivals and shrine fairs, and every evening in Fukuoka, where about 100 stalls set up on the street. <sup class="cite"><a href="#src-1" aria-label="Source 1">1</a></sup></p><p>The word has a second meaning. In 2016 UNESCO listed 33 &ldquo;Yama, Hoko, Yatai&rdquo; float festivals, and there yatai means a decorated festival float, not a place to eat. <sup class="cite"><a href="#src-13" aria-label="Source 13">13</a></sup></p></div>
+    <div class="prose"><p>The dictionary gives two meanings for 屋台. The first is a small shop with a roof (屋) over a stand (台), set up on a street or square. Some are on wheels and some are built into vehicles. The second is a roofed festival float that carries musicians or dancers. <sup class="cite"><a href="#src-1" aria-label="Source 1">1</a></sup></p><p>This site is about the first kind: a counter, a roof, a lantern and usually one cook. You still find them in rows at festivals and shrine fairs. In Fukuoka, about 100 of them set up on the street every evening. <sup class="cite"><a href="#src-2" aria-label="Source 2">2</a></sup></p></div>
   </div>
 </section>
-<section id="menu" class="menu" aria-labelledby="menu-h">
+<section id="stall" class="stall" aria-labelledby="stall-h">
   <div class="wrap">
-    <div class="menu-head">
-      <h2 id="menu-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">お品書き</span>The menu</h2>
-      <p class="sec-lede">25 dishes you will find at stalls, grouped by how they are cooked. Use them as a checklist, or as ideas for your own stall.</p>
+    <h2 id="stall-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">仕組み</span>How a stall works</h2>
+    <p class="sec-lede">A yatai is a kitchen, a dining room and a shopfront that all fit on a few square metres of pavement. Fukuoka sets out its rules in detail, so most of this section uses Fukuoka as the example.</p>
+    <figure class="stall-fig"><svg class="ill stall" viewBox="0 0 640 400" role="img" aria-label="Drawing of a yatai with numbered parts: roof, noren curtain, lantern, counter, kitchen, stools and wheels">
+<g class="ln">
+<path class="n" d="M20 362 H620"/>
+<path class="n" d="M122 196 V80 M518 196 V80"/>
+<path class="s" d="M84 82 L320 38 L556 82 L546 94 H94 Z"/>
+<path class="n" d="M150 76 L320 46 L490 76"/>
+<rect class="s2" x="136" y="92" width="86" height="54"/><text x="179" y="128" text-anchor="middle" font-size="28" class="b">ら</text><rect class="s2" x="228" y="92" width="86" height="54"/><text x="271" y="128" text-anchor="middle" font-size="28" class="b">ー</text><rect class="s2" x="320" y="92" width="86" height="54"/><text x="363" y="128" text-anchor="middle" font-size="28" class="b">め</text><rect class="s2" x="412" y="92" width="86" height="54"/><text x="455" y="128" text-anchor="middle" font-size="28" class="b">ん</text>
+
+<rect class="s" x="270" y="160" width="62" height="36" rx="4"/><ellipse class="b" cx="301" cy="160" rx="31" ry="7"/>
+<path class="k" d="M360 186 H440 V196 H360Z"/>
+<rect class="b" x="110" y="204" width="420" height="92"/>
+<path class="n" d="M110 234 H530 M110 266 H530"/>
+<rect class="b" x="420" y="214" width="16" height="44"/><rect class="b" x="442" y="214" width="16" height="44"/><rect class="b" x="464" y="214" width="16" height="44"/><rect class="b" x="486" y="214" width="16" height="44"/>
+<rect class="s" x="80" y="194" width="480" height="12" rx="2"/>
+<path class="n" d="M92 94 V104 M548 94 V104"/>
+<ellipse class="s2" cx="92" cy="128" rx="17" ry="24"/><path class="n" d="M76 118 H108 M75 128 H109 M76 138 H108"/><path class="k" d="M84 102 H100 V106 H84Z M84 150 H100 V154 H84Z"/>
+<ellipse class="s2" cx="548" cy="128" rx="17" ry="24"/><path class="n" d="M532 118 H564 M531 128 H565 M532 138 H564"/><path class="k" d="M540 102 H556 V106 H540Z M540 150 H556 V154 H540Z"/>
+<rect class="b" x="100" y="296" width="440" height="22"/>
+<circle class="b" cx="160" cy="340" r="24"/><circle class="n" cx="160" cy="340" r="5"/><path class="n" d="M160 316 V364 M136 340 H184"/>
+<circle class="b" cx="470" cy="340" r="24"/><circle class="n" cx="470" cy="340" r="5"/><path class="n" d="M470 316 V364 M446 340 H494"/>
+<g><ellipse class="s" cx="230" cy="274" rx="22" ry="7"/><path class="n" d="M214 278 L210 362 M246 278 L250 362 M220 280 V362 M240 280 V362"/></g>
+<g><ellipse class="s" cx="320" cy="274" rx="22" ry="7"/><path class="n" d="M304 278 L300 362 M336 278 L340 362 M310 280 V362 M330 280 V362"/></g>
+<g><ellipse class="s" cx="410" cy="274" rx="22" ry="7"/><path class="n" d="M394 278 L390 362 M426 278 L430 362 M400 280 V362 M420 280 V362"/></g>
+</g>
+<g><circle class="k" cx="320" cy="52" r="13"/><text x="320" y="57" text-anchor="middle" font-size="15" class="b">1</text><circle class="k" cx="182" cy="160" r="13"/><text x="182" y="165" text-anchor="middle" font-size="15" class="b">2</text><circle class="k" cx="56" cy="128" r="13"/><text x="56" y="133" text-anchor="middle" font-size="15" class="b">3</text><circle class="k" cx="66" cy="202" r="13"/><text x="66" y="207" text-anchor="middle" font-size="15" class="b">4</text><circle class="k" cx="246" cy="178" r="13"/><text x="246" y="183" text-anchor="middle" font-size="15" class="b">5</text><circle class="k" cx="240" cy="262" r="13"/><text x="240" y="267" text-anchor="middle" font-size="15" class="b">6</text><circle class="k" cx="470" cy="372" r="13"/><text x="470" y="377" text-anchor="middle" font-size="15" class="b">7</text></g>
+</svg><figcaption class="vh">Numbered parts are described below.</figcaption></figure>
+    <ol class="parts" aria-label="Parts of a stall"><li><span class="part-n" aria-hidden="true">1</span><div><h4 class="part-name">Roof <span class="part-ja" lang="ja">屋根</span></h4><p>The 屋 in 屋台. A small roof over the stand. <sup class="cite"><a href="#src-1" aria-label="Source 1">1</a></sup></p></div></li><li><span class="part-n" aria-hidden="true">2</span><div><h4 class="part-name">Noren <span class="part-ja" lang="ja">暖簾</span></h4><p>A split cloth curtain across the front. In Fukuoka it goes up at dusk, when the stall opens. <sup class="cite"><a href="#src-18" aria-label="Source 18">18</a></sup></p></div></li><li><span class="part-n" aria-hidden="true">3</span><div><h4 class="part-name">Lantern <span class="part-ja" lang="ja">提灯</span></h4><p>A paper lantern (chōchin) that lights the counter.</p></div></li><li><span class="part-n" aria-hidden="true">4</span><div><h4 class="part-name">Counter <span class="part-ja" lang="ja">カウンター</span></h4><p>Customers sit at a counter with the cook on the other side. Most stalls seat around ten. <sup class="cite"><a href="#src-17" aria-label="Source 17">17</a></sup></p></div></li><li><span class="part-n" aria-hidden="true">5</span><div><h4 class="part-name">Kitchen <span class="part-ja" lang="ja">厨房</span></h4><p>Everything is cooked inside the stall. At Fukuoka's stall sites the city has fitted a water supply, a drain and a power box that the operators plug into. <sup class="cite"><a href="#src-7" aria-label="Source 7">7</a></sup></p></div></li><li><span class="part-n" aria-hidden="true">6</span><div><h4 class="part-name">Stools <span class="part-ja" lang="ja">椅子</span></h4><p>In Fukuoka, seats count toward the size limit. Stools, kitchen and storage must all fit within 3 m of frontage. <sup class="cite"><a href="#src-5" aria-label="Source 5">5</a></sup></p></div></li><li><span class="part-n" aria-hidden="true">7</span><div><h4 class="part-name">Wheels <span class="part-ja" lang="ja">車輪</span></h4><p>Fukuoka's ordinance defines a yatai as a light vehicle (軽車両) fitted out as a restaurant. Each night it is packed up and taken away to storage. <sup class="cite"><a href="#src-4" aria-label="Source 4">4</a>, <a href="#src-8" aria-label="Source 8">8</a></sup></p></div></li></ol>
+
+    <h3 class="sub-title">One night, start to finish</h3>
+    <ol class="night"><li><p class="night-time">17:00</p><h4 class="night-what">Set up</h4><p>Set-up may not start before 5pm. The stall is wheeled out to its site. <sup class="cite"><a href="#src-12" aria-label="Source 12">12</a>, <a href="#src-10" aria-label="Source 10">10</a></sup></p></li><li><p class="night-time">about 18:30</p><h4 class="night-what">Open</h4><p>The noren goes up and the first customers sit down. <sup class="cite"><a href="#src-10" aria-label="Source 10">10</a>, <a href="#src-18" aria-label="Source 18">18</a></sup></p></li><li><p class="night-time">about 1:00</p><h4 class="night-what">Close</h4><p>Closing time varies from stall to stall. <sup class="cite"><a href="#src-10" aria-label="Source 10">10</a></sup></p></li><li><p class="night-time">by 4:00</p><h4 class="night-what">Clear the street</h4><p>Everything must be off the road. Stalls are stored off the street, and transport vehicles may not be parked there. <sup class="cite"><a href="#src-12" aria-label="Source 12">12</a>, <a href="#src-8" aria-label="Source 8">8</a></sup></p></li></ol>
+
+    <div class="stall-grid">
+      <div class="rules-box"><h3 class="sub-title">The rules in Fukuoka</h3><dl class="rules"><div><dt>Size</dt><dd>Up to 3 m wide along the pavement and 2.5 m deep. <sup class="cite"><a href="#src-5" aria-label="Source 5">5</a>, <a href="#src-6" aria-label="Source 6">6</a></sup></dd></div><div><dt>Pavement</dt><dd>At least 2 m of pavement must stay clear for people walking past. <sup class="cite"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div><div><dt>Permits</dt><dd>A road occupancy permit from the ward office, plus a food business permit from the public health centre. Stalls in parks need a park permit. <sup class="cite"><a href="#src-9" aria-label="Source 9">9</a>, <a href="#src-4" aria-label="Source 4">4</a></sup></dd></div><div><dt>Who cooks</dt><dd>The permit holder must run the stall in person. Selling, subletting or lending the name of a stall is banned. <sup class="cite"><a href="#src-13" aria-label="Source 13">13</a>, <a href="#src-14" aria-label="Source 14">14</a></sup></dd></div><div><dt>Passing it on</dt><dd>A stall can pass only to a spouse or child. New operators are chosen by open application and screening. <sup class="cite"><a href="#src-14" aria-label="Source 14">14</a>, <a href="#src-10" aria-label="Source 10">10</a></sup></dd></div></dl></div>
+      <div class="counter-box"><h3 class="sub-title">At the counter<sup class="cite"><a href="#src-15" aria-label="Source 15">15</a></sup></h3><ul class="counter"><li>Order at least one drink and one dish each.</li><li>Give up your seat once you have eaten. Other people are waiting.</li><li>Come in twos and threes. Counters are small.</li><li>There are no toilets at the stall.</li><li>Pay when you leave. Most stalls take cash only.</li></ul></div>
     </div>
+
+    <div class="festival"><h3 class="sub-title">Festival stalls</h3><p>Festival stalls work differently. Traditionally they are run by tekiya, travelling stallholders whose networks go back to Edo-period peddlers and who historically allotted pitches at festivals. <sup class="cite"><a href="#src-19" aria-label="Source 19">19</a></sup> Today a stall that cooks with gas, charcoal or electricity has to be registered with the local fire department before the event. Each one needs a fire extinguisher, and gas bottles and hoses must be secured. Rules were tightened after a generator fire at the 2013 Fukuchiyama fireworks. <sup class="cite"><a href="#src-20" aria-label="Source 20">20</a></sup></p></div>
+  </div>
+</section>
+<section id="history" class="history" aria-labelledby="hi-h">
+  <div class="wrap">
+    <h2 id="hi-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">歴史</span>Four hundred years of stalls</h2>
+    <p class="sec-lede">From Edo's night soba carts to Fukuoka's licensed stalls.</p>
+    <ol class="timeline"><li><p class="tl-year">Edo period</p><div><h3 class="tl-title">A city of single men</h3><p>Records from 1743 show men outnumbering women by about 1.5 to 1 in Edo, many of them workers living alone. Soba stalls fed them.<sup class="cite"><a href="#src-23" aria-label="Source 23">23</a>, <a href="#src-21" aria-label="Source 21">21</a></sup></p></div></li><li><p class="tl-year">1686</p><div><h3 class="tl-title">Fire is banned</h3><p>Fearing city fires, the shogunate banned fire at yatai. Night soba sellers, known as yotaka soba, carried on anyway.<sup class="cite"><a href="#src-21" aria-label="Source 21">21</a></sup></p></div></li><li><p class="tl-year">1700s</p><div><h3 class="tl-title">Nihachi soba</h3><p>Soba sold as nihachi (二八). It may mean 2 parts wheat to 8 parts buckwheat, or a price of 2 × 8 = 16 mon. Sources give both.<sup class="cite"><a href="#src-24" aria-label="Source 24">24</a>, <a href="#src-21" aria-label="Source 21">21</a></sup></p></div></li><li><p class="tl-year">1770s</p><div><h3 class="tl-title">Imagawayaki</h3><p>Round bean-paste cakes go on sale near Imagawa Bridge in Kanda, Edo.<sup class="cite"><a href="#src-43" aria-label="Source 43">43</a></sup></p></div></li><li><p class="tl-year">1824</p><div><h3 class="tl-title">From stall to shop</h3><p>Yohei-zushi goes from peddling, to a street stall, to a shop.<sup class="cite"><a href="#src-22" aria-label="Source 22">22</a></sup></p></div></li><li><p class="tl-year">1909</p><div><h3 class="tl-title">Taiyaki</h3><p>Naniwaya in Azabu-Jūban is credited with the fish-shaped cake.<sup class="cite"><a href="#src-42" aria-label="Source 42">42</a></sup></p></div></li><li><p class="tl-year">1935</p><div><h3 class="tl-title">Takoyaki</h3><p>Endo Tomekichi of Aizuya in Osaka is credited with putting octopus in the batter balls.<sup class="cite"><a href="#src-30" aria-label="Source 30">30</a>, <a href="#src-29" aria-label="Source 29">29</a></sup></p></div></li><li><p class="tl-year">1945–</p><div><h3 class="tl-title">The charumera</h3><p>Ramen stalls spring up in the postwar black markets. Vendors play the charumera, a small reed horn, to call customers.<sup class="cite"><a href="#src-26" aria-label="Source 26">26</a>, <a href="#src-25" aria-label="Source 25">25</a></sup></p></div></li><li><p class="tl-year">1946</p><div><h3 class="tl-title">Fukuoka's stalls begin</h3><p>Simple temporary shops appear on Fukuoka's roads in the confusion after the war.<sup class="cite"><a href="#src-3" aria-label="Source 3">3</a></sup></p></div></li><li><p class="tl-year">1947</p><div><h3 class="tl-title">Tonkotsu</h3><p>The Sankyū stall in Kurume is credited with pork-bone broth. Later a Nagahama stall makes thin noodles and kaedama popular.<sup class="cite"><a href="#src-26" aria-label="Source 26">26</a></sup></p></div></li><li><p class="tl-year">1949–51</p><div><h3 class="tl-title">Tokyo clears its streets</h3><p>GHQ orders street stalls off Tokyo's public roads. By 1951 Ginza's stalls are gone.<sup class="cite"><a href="#src-27" aria-label="Source 27">27</a></sup></p></div></li><li><p class="tl-year">1960s–70s</p><div><h3 class="tl-title">Fukuoka's peak</h3><p>More than 400 stalls. Complaints about stalls on the road grow at the same time.<sup class="cite"><a href="#src-3" aria-label="Source 3">3</a></sup></p></div></li><li><p class="tl-year">1995</p><div><h3 class="tl-title">One generation only</h3><p>With about 220 stalls left, police say no new operators will be allowed. Each stall is to last one generation.<sup class="cite"><a href="#src-3" aria-label="Source 3">3</a></sup></p></div></li><li><p class="tl-year">2013</p><div><h3 class="tl-title">The ordinance</h3><p>Fukuoka passes the Yatai Basic Ordinance. It sets out rules for stall size, permits and who may run a stall, and opens the way for new operators.<sup class="cite"><a href="#src-4" aria-label="Source 4">4</a>, <a href="#src-14" aria-label="Source 14">14</a></sup></p></div></li><li><p class="tl-year">2016</p><div><h3 class="tl-title">New blood</h3><p>The city starts choosing new operators by open application and screening.<sup class="cite"><a href="#src-10" aria-label="Source 10">10</a></sup></p></div></li><li><p class="tl-year">2026</p><div><h3 class="tl-title">Sixth round</h3><p>102 people apply for 23 stall sites. Fukuoka has about 100 stalls.<sup class="cite"><a href="#src-11" aria-label="Source 11">11</a>, <a href="#src-2" aria-label="Source 2">2</a></sup></p></div></li></ol>
+  </div>
+</section>
+<section id="food" class="food" aria-labelledby="food-h">
+  <div class="wrap">
+    <h2 id="food-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">お品書き</span>What the stalls cook</h2>
+    <p class="sec-lede">18 dishes you will find at yatai, grouped by how they are cooked.</p>
     
     <section class="cat cat-teppan" id="cat-teppan" aria-labelledby="cat-teppan-h">
     <header class="cat-head">
@@ -215,51 +270,60 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
     </header>
     <ul class="dishes">
     <li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">たこ焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<circle class="s" cx="47" cy="50" r="13"/><circle class="s" cx="73" cy="50" r="13"/>
+<circle class="s" cx="34" cy="62" r="14"/><circle class="s" cx="86" cy="62" r="14"/><circle class="s" cx="60" cy="64" r="14"/>
+<path class="n" d="M24 58 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/>
+<path class="n" d="M40 40 l4 -4 M64 38 l3 -4 M80 42 l4 -2 M54 54 l3 -3"/>
+<path class="b" d="M10 72 H110 L99 98 H21 Z"/><path class="n" d="M18 82 H102"/>
+<path class="n" d="M92 48 L108 22"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">たこ焼き</p>
         <h4 class="dish-name">Takoyaki <span class="dish-gloss">octopus balls</span></h4>
-        <p class="dish-desc">Balls of batter with a piece of octopus inside, cooked in a griddle of half-round moulds. The sauce on top only arrived after the war.<sup class="cite"><a href="#src-19" aria-label="Source 19">19</a></sup></p>
-        <p class="dish-meta">Osaka · all year</p>
+        <p class="dish-desc">Balls of batter with a piece of octopus inside, cooked in a griddle of half-round moulds. The sauce on top only arrived after the war.<sup class="cite"><a href="#src-29" aria-label="Source 29">29</a></sup></p>
+        <p class="dish-meta">Osaka</p>
       </div>
     </li>
 <li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">お好み焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="s" d="M16 60 v12 a44 17 0 0 0 88 0 v-12"/>
+<ellipse class="s" cx="60" cy="60" rx="44" ry="17"/>
+<ellipse class="k" cx="60" cy="59" rx="36" ry="12"/>
+<clipPath id="okc-okonomiyaki"><ellipse cx="60" cy="59" rx="35" ry="11"/></clipPath>
+<g clip-path="url(#okc-okonomiyaki)"><path class="m" d="M20 44 L64 76 M36 44 L80 76 M52 44 L96 76 M100 44 L56 76 M84 44 L40 76 M68 44 L24 76"/></g>
+<path class="b" d="M78 96 l20 -8 l5 9 l-20 8 z"/><path class="n" d="M103 93 l10 -4"/></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Okonomiyaki <span class="dish-gloss">Osaka style</span></h4>
-        <p class="dish-desc">A batter of flour and dashi mixed with cabbage and pork or squid, then cooked on both sides.<sup class="cite"><a href="#src-21" aria-label="Source 21">21</a></sup></p>
-        <p class="dish-meta">Osaka · all year</p>
+        <p class="dish-ja" lang="ja">お好み焼き</p>
+        <h4 class="dish-name">Okonomiyaki <span class="dish-gloss">savoury pancake</span></h4>
+        <p class="dish-desc">In Osaka, a batter of flour and dashi is mixed with cabbage and pork or squid, then cooked on both sides. In Hiroshima it is built in layers instead: a thin crêpe, cabbage, pork, noodles and egg.<sup class="cite"><a href="#src-31" aria-label="Source 31">31</a>, <a href="#src-32" aria-label="Source 32">32</a></sup></p>
+        <p class="dish-meta">Osaka · Hiroshima</p>
       </div>
     </li>
 <li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">広島焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="s" d="M20 64 Q26 38 60 36 Q94 38 100 64 Z"/>
+<path class="n" d="M28 58 q5 -8 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 M36 48 q5 -7 10 0 t10 0 t10 0 t10 0"/>
+<path class="s2" d="M50 40 l7 2 l-1 4 l-7 -2z M66 44 l7 -1 l0 4 l-7 1z M42 54 l6 -2 l1 4 l-6 2z"/>
+<path class="b" d="M12 64 H108 L98 94 H22 Z"/><path class="n" d="M20 74 H100"/>
+<path class="n" d="M20 104 L104 98 M20 108 L104 102"/></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Hiroshima okonomiyaki <span class="dish-gloss">layered style</span></h4>
-        <p class="dish-desc">Built in layers rather than mixed: a thin crêpe, cabbage, pork, yakisoba noodles and egg.<sup class="cite"><a href="#src-22" aria-label="Source 22">22</a></sup></p>
-        <p class="dish-meta">Hiroshima · all year</p>
-      </div>
-    </li>
-<li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">焼きそば</p>
-      <div class="dish-body">
+        <p class="dish-ja" lang="ja">焼きそば</p>
         <h4 class="dish-name">Yakisoba <span class="dish-gloss">fried noodles</span></h4>
-        <p class="dish-desc">Wheat noodles stir-fried on the plate with meat and vegetables in a Worcester-style sauce. One of the most common festival stalls.<sup class="cite"><a href="#src-23" aria-label="Source 23">23</a>, <a href="#src-24" aria-label="Source 24">24</a></sup></p>
-        <p class="dish-meta">Nationwide · festivals</p>
-      </div>
-    </li>
-<li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">いか焼き</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Ikayaki <span class="dish-gloss">grilled squid</span></h4>
-        <p class="dish-desc">At festivals, usually a whole squid grilled and brushed with soy. In Osaka the name means chopped squid in a thin batter, pressed flat between two hot iron plates.<sup class="cite"><a href="#src-26" aria-label="Source 26">26</a></sup></p>
-        <p class="dish-meta">Nationwide · Osaka style</p>
-      </div>
-    </li>
-<li class="dish dish-teppan">
-      <p class="dish-ja" lang="ja">箸巻き</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Hashimaki <span class="dish-gloss">chopstick roll</span></h4>
-        <p class="dish-desc">A thin okonomiyaki rolled around a pair of chopsticks so it can be eaten while walking.<sup class="cite"><a href="#src-27" aria-label="Source 27">27</a></sup></p>
+        <p class="dish-desc">Wheat noodles stir-fried on the plate with meat and vegetables in a Worcester-style sauce. One of the most common festival stalls.<sup class="cite"><a href="#src-33" aria-label="Source 33">33</a>, <a href="#src-34" aria-label="Source 34">34</a></sup></p>
         <p class="dish-meta">Festivals</p>
+      </div>
+    </li>
+<li class="dish dish-teppan">
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M60 116 V72"/>
+<path class="s" d="M60 6 L82 30 L72 34 V64 Q60 72 48 64 V34 L38 30 Z"/>
+<path class="n" d="M50 66 q-5 12 -3 26 M56 69 q-3 14 1 28 M64 69 q3 14 -1 28 M70 66 q5 12 3 26"/>
+<path class="n" d="M52 42 l16 7 M52 52 l16 7"/></g></svg></div>
+      <div class="dish-body">
+        <p class="dish-ja" lang="ja">いか焼き</p>
+        <h4 class="dish-name">Ikayaki <span class="dish-gloss">grilled squid</span></h4>
+        <p class="dish-desc">Usually a whole squid, grilled and brushed with soy. In Osaka the name means chopped squid in a thin batter, pressed flat between two hot iron plates.<sup class="cite"><a href="#src-35" aria-label="Source 35">35</a></sup></p>
+        <p class="dish-meta">Festivals · Osaka</p>
       </div>
     </li>
     </ul>
@@ -271,43 +335,63 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
     </header>
     <ul class="dishes">
     <li class="dish dish-sumi">
-      <p class="dish-ja" lang="ja">焼き鳥</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<g transform="rotate(-34 60 60)">
+<path class="n" d="M2 48 H118 M2 74 H118"/>
+<rect class="s" x="20" y="39" width="18" height="18" rx="6"/><rect class="s2" x="41" y="41" width="9" height="14" rx="3"/>
+<rect class="s" x="53" y="39" width="18" height="18" rx="6"/><rect class="s2" x="74" y="41" width="9" height="14" rx="3"/>
+<rect class="s" x="86" y="39" width="18" height="18" rx="6"/>
+<rect class="s" x="24" y="65" width="18" height="18" rx="6"/><rect class="s" x="46" y="65" width="18" height="18" rx="6"/>
+<rect class="s" x="68" y="65" width="18" height="18" rx="6"/><rect class="s" x="90" y="65" width="18" height="18" rx="6"/>
+</g></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">焼き鳥</p>
         <h4 class="dish-name">Yakitori <span class="dish-gloss">grilled chicken</span></h4>
-        <p class="dish-desc">Chicken on skewers, grilled and finished with tare (soy, sugar and mirin) or plain salt.<sup class="cite"><a href="#src-25" aria-label="Source 25">25</a></sup></p>
-        <p class="dish-meta">Nationwide · all year</p>
+        <p class="dish-desc">Chicken on skewers, grilled and finished with tare (soy, sugar and mirin) or plain salt.<sup class="cite"><a href="#src-36" aria-label="Source 36">36</a></sup></p>
+        <p class="dish-meta">Everywhere</p>
       </div>
     </li>
 <li class="dish dish-sumi">
-      <p class="dish-ja" lang="ja">焼きとうもろこし</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<g transform="rotate(-28 60 60)">
+<path class="n" d="M2 60 H28"/>
+<path class="s" d="M28 60 Q28 45 50 45 L96 47 Q108 60 96 73 L50 75 Q28 75 28 60Z"/>
+<clipPath id="cnc-corn"><path d="M28 60 Q28 45 50 45 L96 47 Q108 60 96 73 L50 75 Q28 75 28 60Z"/></clipPath>
+<g clip-path="url(#cnc-corn)"><path class="n" d="M40 40 V80 M48 40 V80 M56 40 V80 M64 40 V80 M72 40 V80 M80 40 V80 M88 40 V80 M96 40 V80 M20 53 H110 M20 60 H110 M20 67 H110"/></g>
+<path class="b" d="M28 60 Q20 44 6 40 Q18 54 14 62 Q22 70 10 82 Q24 78 28 60Z"/>
+</g></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">焼きとうもろこし</p>
         <h4 class="dish-name">Yaki-tōmorokoshi <span class="dish-gloss">grilled corn</span></h4>
-        <p class="dish-desc">Corn grilled and brushed with soy sauce. In Sapporo it is called tōkibi and sold from carts in Odori Park from late April to mid-October.<sup class="cite"><a href="#src-28" aria-label="Source 28">28</a></sup></p>
-        <p class="dish-meta">Hokkaido · summer</p>
+        <p class="dish-desc">Corn grilled and brushed with soy sauce. In Sapporo it is called tōkibi and sold from carts in summer.<sup class="cite"><a href="#src-37" aria-label="Source 37">37</a></sup></p>
+        <p class="dish-meta">Summer</p>
       </div>
     </li>
 <li class="dish dish-sumi">
-      <p class="dish-ja" lang="ja">フランクフルト</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="s" d="M30 60 q-8 -12 4 -18 q4 -10 16 -6 q10 -6 16 4 q-2 10 -8 12Z"/>
+<path class="s" d="M58 58 q-4 -14 10 -16 q8 -10 18 -2 q10 2 6 12 q4 6 -6 8Z"/>
+<path class="s" d="M42 58 q-2 -10 10 -12 q10 -2 12 8Z"/>
+<path class="n" d="M80 44 L100 14"/>
+<path class="b" d="M26 56 H94 L84 104 H36 Z"/><path class="n" d="M32 68 H88 M34 80 H86 M36 92 H84"/></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Furanku <span class="dish-gloss">sausage on a stick</span></h4>
-        <p class="dish-desc">A thick sausage on a stick, grilled and finished with ketchup and mustard.<sup class="cite"><a href="#src-30" aria-label="Source 30">30</a></sup></p>
+        <p class="dish-ja" lang="ja">唐揚げ</p>
+        <h4 class="dish-name">Karaage <span class="dish-gloss">fried chicken</span></h4>
+        <p class="dish-desc">Marinated chicken, fried. The Japan Karaage Association traces it to Mikasa Kaikan in Ginza in 1932.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a></sup></p>
         <p class="dish-meta">Festivals</p>
       </div>
     </li>
 <li class="dish dish-sumi">
-      <p class="dish-ja" lang="ja">唐揚げ</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M60 116 V88"/>
+<rect class="s" x="48" y="10" width="24" height="80" rx="12"/>
+<path class="n" d="M50 28 l20 -7 M50 44 l20 -7 M50 60 l20 -7 M50 76 l20 -7"/>
+<path class="z" d="M54 18 L66 26 L54 34 L66 42 L54 50 L66 58 L54 66 L66 74 L56 82"/></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Karaage <span class="dish-gloss">fried chicken</span></h4>
-        <p class="dish-desc">Marinated chicken, fried. The Japan Karaage Association traces it to Mikasa Kaikan in Ginza in 1932. Nakatsu in Ōita has around 60 take-out karaage shops.<sup class="cite"><a href="#src-31" aria-label="Source 31">31</a></sup></p>
-        <p class="dish-meta">Nationwide · festivals</p>
-      </div>
-    </li>
-<li class="dish dish-sumi">
-      <p class="dish-ja" lang="ja">串カツ</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Kushikatsu <span class="dish-gloss">fried skewers</span></h4>
-        <p class="dish-desc">Battered, deep-fried skewers from Shinsekai in Osaka. The rule: dip once in the shared sauce, never twice.<sup class="cite"><a href="#src-32" aria-label="Source 32">32</a></sup></p>
-        <p class="dish-meta">Osaka · all year</p>
+        <p class="dish-ja" lang="ja">フランクフルト</p>
+        <h4 class="dish-name">Furanku <span class="dish-gloss">sausage on a stick</span></h4>
+        <p class="dish-desc">A thick sausage on a stick, grilled and finished with ketchup and mustard.<sup class="cite"><a href="#src-39" aria-label="Source 39">39</a></sup></p>
+        <p class="dish-meta">Festivals</p>
       </div>
     </li>
     </ul>
@@ -315,38 +399,69 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
     <header class="cat-head">
       <span class="cat-kanji" lang="ja" aria-hidden="true">鍋</span>
       <div><h3 id="cat-nabe-h" class="cat-title">From the pot <span class="cat-ja" lang="ja">鍋</span></h3>
-      <p class="cat-intro">The menu of a Fukuoka stall at night: broth, noodles and small plates to share.</p></div>
+      <p class="cat-intro">What a Fukuoka stall serves at night: broth, noodles and small plates to share.</p></div>
     </header>
     <ul class="dishes">
     <li class="dish dish-nabe">
-      <p class="dish-ja" lang="ja">博多ラーメン</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M34 34 q-5 -6 0 -12 t0 -12 M48 30 q-5 -6 0 -12 t0 -10"/>
+<path class="s" d="M12 56 H108 Q104 100 60 102 Q16 100 12 56 Z"/>
+<path class="n" d="M16 72 Q60 80 104 72"/>
+<ellipse class="b" cx="60" cy="56" rx="48" ry="10"/>
+<ellipse class="s2" cx="38" cy="55" rx="13" ry="6"/><ellipse class="n" cx="38" cy="55" rx="7" ry="3"/>
+<path class="k" d="M74 34 L90 37 L88 57 L72 54Z"/>
+<circle class="n" cx="56" cy="52" r="2.4"/><circle class="n" cx="63" cy="58" r="2.4"/><circle class="n" cx="52" cy="59" r="2.4"/>
+<path class="n" d="M92 56 q-5 -10 -1 -22 M97 55 q-4 -10 1 -24"/>
+<path class="n" d="M80 6 L100 40 M88 4 L106 36"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">博多ラーメン</p>
         <h4 class="dish-name">Hakata ramen <span class="dish-gloss">pork-bone ramen</span></h4>
-        <p class="dish-desc">Tonkotsu broth with thin, straight noodles. Ask for kaedama to get a second serving of noodles in the same soup, a custom said to have started at the Nagahama stalls.<sup class="cite"><a href="#src-10" aria-label="Source 10">10</a></sup></p>
-        <p class="dish-meta">Fukuoka · every night</p>
+        <p class="dish-desc">Tonkotsu broth with thin, straight noodles. Ask for kaedama to get a second serving of noodles in the same soup.<sup class="cite"><a href="#src-28" aria-label="Source 28">28</a>, <a href="#src-26" aria-label="Source 26">26</a></sup></p>
+        <p class="dish-meta">Fukuoka</p>
       </div>
     </li>
 <li class="dish dish-nabe">
-      <p class="dish-ja" lang="ja">おでん</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M26 50 q-5 -6 0 -12 t0 -12 M98 60 q-5 -6 0 -12 t0 -12"/>
+<path class="n" d="M60 116 V4"/>
+<path class="s" d="M60 10 L82 44 H38 Z"/>
+<circle class="k" cx="54" cy="30" r="1.3"/><circle class="k" cx="64" cy="36" r="1.3"/><circle class="k" cx="58" cy="40" r="1.3"/><circle class="k" cx="66" cy="26" r="1.3"/>
+<circle class="b" cx="60" cy="62" r="14"/>
+<rect class="s" x="44" y="80" width="32" height="24" rx="4"/>
+<path class="s2" d="M66 82 q8 -2 10 4 q-6 2 -10 -4z"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">おでん</p>
         <h4 class="dish-name">Oden <span class="dish-gloss">simmered pot</span></h4>
-        <p class="dish-desc">Daikon, egg, konnyaku and more, simmered in broth. A winter dish that is now sold all year. Fukuoka stalls add gyoza and beef tendon.<sup class="cite"><a href="#src-33" aria-label="Source 33">33</a>, <a href="#src-6" aria-label="Source 6">6</a></sup></p>
-        <p class="dish-meta">Nationwide · winter</p>
+        <p class="dish-desc">Daikon, egg, konnyaku and more, kept simmering in broth. Fukuoka stalls add gyoza and beef tendon.<sup class="cite"><a href="#src-40" aria-label="Source 40">40</a>, <a href="#src-16" aria-label="Source 16">16</a></sup></p>
+        <p class="dish-meta">Fukuoka · winter</p>
       </div>
     </li>
 <li class="dish dish-nabe">
-      <p class="dish-ja" lang="ja">明太玉子焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<ellipse class="b" cx="60" cy="80" rx="52" ry="20"/>
+<g transform="translate(14 78) scale(1.25)"><path class="s" d="M0 0 Q14 -24 30 0 Q15 7 0 0Z"/><path class="n" d="M7 -8 l2 -4 M13 -12 l1 -4 M19 -12 l-1 -4 M25 -7 l-2 -4"/></g>
+<g transform="translate(42 72) scale(1.25)"><path class="s" d="M0 0 Q14 -24 30 0 Q15 7 0 0Z"/><path class="n" d="M7 -8 l2 -4 M13 -12 l1 -4 M19 -12 l-1 -4 M25 -7 l-2 -4"/></g>
+<g transform="translate(70 80) scale(1.25)"><path class="s" d="M0 0 Q14 -24 30 0 Q15 7 0 0Z"/><path class="n" d="M7 -8 l2 -4 M13 -12 l1 -4 M19 -12 l-1 -4 M25 -7 l-2 -4"/></g></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Mentai tamagoyaki <span class="dish-gloss">roe omelette</span></h4>
-        <p class="dish-desc">A rolled omelette with spicy pollock roe (mentaiko), made for sharing across the counter.<sup class="cite"><a href="#src-6" aria-label="Source 6">6</a></sup></p>
-        <p class="dish-meta">Fukuoka stalls</p>
-      </div>
-    </li>
-<li class="dish dish-nabe">
-      <p class="dish-ja" lang="ja">一口餃子</p>
-      <div class="dish-body">
+        <p class="dish-ja" lang="ja">一口餃子</p>
         <h4 class="dish-name">Hitokuchi gyoza <span class="dish-gloss">one-bite dumplings</span></h4>
-        <p class="dish-desc">Bite-sized gyoza, a Hakata specialty.<sup class="cite"><a href="#src-9" aria-label="Source 9">9</a></sup></p>
+        <p class="dish-desc">Bite-sized gyoza, a Hakata specialty.<sup class="cite"><a href="#src-41" aria-label="Source 41">41</a></sup></p>
+        <p class="dish-meta">Fukuoka</p>
+      </div>
+    </li>
+<li class="dish dish-nabe">
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M10 96 H110"/>
+<path class="s" d="M20 54 H84 V90 H20 Z"/>
+<path class="s" d="M20 54 L38 40 H102 L84 54Z"/>
+<path class="b" d="M84 54 L102 40 V76 L84 90Z"/>
+<path class="n" d="M93 64 a3 3 0 1 1 3 3 a6 6 0 1 1 -7 -7 a10 10 0 1 1 4 16"/>
+<path class="s2" d="M40 48 q12 -8 30 -3 q8 3 0 6 q-16 4 -30 -3Z"/>
+<path class="n" d="M44 54 V90 M64 54 V90"/></g></svg></div>
+      <div class="dish-body">
+        <p class="dish-ja" lang="ja">明太玉子焼き</p>
+        <h4 class="dish-name">Mentai tamagoyaki <span class="dish-gloss">roe omelette</span></h4>
+        <p class="dish-desc">A rolled omelette with spicy pollock roe (mentaiko), made for sharing across the counter.<sup class="cite"><a href="#src-16" aria-label="Source 16">16</a></sup></p>
         <p class="dish-meta">Fukuoka</p>
       </div>
     </li>
@@ -359,134 +474,105 @@ section.about,section.menu,section.fukuoka,section.history,section.calendar,sect
     </header>
     <ul class="dishes">
     <li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">たい焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="s" d="M10 60 Q26 30 64 34 Q84 36 92 48 L110 32 Q104 60 110 88 L92 72 Q84 84 64 86 Q26 90 10 60Z"/>
+<circle class="k" cx="28" cy="52" r="3"/><path class="n" d="M12 62 l7 -1"/>
+<path class="n" d="M40 42 Q47 60 40 78"/>
+<path class="n" d="M50 52 q4 5 8 0 M58 52 q4 5 8 0 M66 52 q4 5 8 0 M54 62 q4 5 8 0 M62 62 q4 5 8 0 M70 62 q4 5 8 0 M58 72 q4 5 8 0 M66 72 q4 5 8 0"/>
+<path class="n" d="M48 35 q10 -10 26 -2 M100 48 L103 72"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">たい焼き</p>
         <h4 class="dish-name">Taiyaki <span class="dish-gloss">fish-shaped cake</span></h4>
-        <p class="dish-desc">A fish-shaped cake filled with sweet bean paste. Naniwaya Sōhonten in Azabu-Jūban, open since 1909, is credited with the first.<sup class="cite"><a href="#src-34" aria-label="Source 34">34</a></sup></p>
-        <p class="dish-meta">Tokyo origin · all year</p>
+        <p class="dish-desc">Batter baked in a fish-shaped mould around sweet bean paste.<sup class="cite"><a href="#src-42" aria-label="Source 42">42</a></sup></p>
+        <p class="dish-meta">Everywhere</p>
       </div>
     </li>
 <li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">今川焼き</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M48 30 q-5 -6 0 -12 t0 -12 M66 32 q-5 -6 0 -12 t0 -10"/>
+<path class="s" d="M16 52 V78 A44 14 0 0 0 104 78 V52"/>
+<ellipse class="s" cx="60" cy="52" rx="44" ry="14"/>
+<ellipse class="n" cx="60" cy="52" rx="34" ry="9"/>
+<path class="n" d="M16 66 A44 14 0 0 0 104 66"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">今川焼き</p>
         <h4 class="dish-name">Imagawayaki <span class="dish-gloss">round bean cake</span></h4>
-        <p class="dish-desc">The round original, first sold near Imagawa Bridge in Edo in the 1770s. Depending on the region it is also called ōbanyaki, kaitenyaki or oyaki.<sup class="cite"><a href="#src-35" aria-label="Source 35">35</a></sup></p>
-        <p class="dish-meta">Nationwide · all year</p>
+        <p class="dish-desc">The round original of taiyaki. Depending on the region it is also called ōbanyaki, kaitenyaki or oyaki.<sup class="cite"><a href="#src-43" aria-label="Source 43">43</a></sup></p>
+        <p class="dish-meta">Everywhere</p>
       </div>
     </li>
 <li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">みたらし団子</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<g transform="rotate(-30 60 60)">
+<path class="n" d="M2 60 H118"/>
+<circle class="s" cx="34" cy="60" r="13"/><circle class="s" cx="58" cy="60" r="13"/><circle class="s" cx="82" cy="60" r="13"/>
+<path class="s2" d="M21 56 Q34 42 46 54 Q58 42 70 54 Q82 42 95 56 L95 60 Q90 70 86 61 Q80 66 74 60 Q68 70 62 60 Q56 66 50 60 Q44 70 38 60 Q32 66 26 60 Q22 64 21 60 Z"/>
+<circle class="n" cx="34" cy="60" r="13"/><circle class="n" cx="58" cy="60" r="13"/><circle class="n" cx="82" cy="60" r="13"/>
+</g></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">みたらし団子</p>
         <h4 class="dish-name">Mitarashi dango <span class="dish-gloss">glazed dumplings</span></h4>
-        <p class="dish-desc">Grilled rice dumplings in a sweet soy glaze. Tradition links them to Shimogamo Shrine in Kyoto.<sup class="cite"><a href="#src-36" aria-label="Source 36">36</a></sup></p>
-        <p class="dish-meta">Kyoto · all year</p>
+        <p class="dish-desc">Grilled rice dumplings in a sweet soy glaze. Tradition links them to Shimogamo Shrine in Kyoto.<sup class="cite"><a href="#src-44" aria-label="Source 44">44</a></sup></p>
+        <p class="dish-meta">Kyoto</p>
       </div>
     </li>
 <li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">りんご飴</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M60 44 V4"/>
+<path class="s2" d="M60 42 C42 28 16 40 22 68 C26 92 46 102 60 94 C74 102 94 92 98 68 C104 40 78 28 60 42Z"/>
+<path class="m" d="M34 56 q4 -8 12 -9"/>
+<path class="n" d="M40 98 q20 10 40 0"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">りんご飴</p>
         <h4 class="dish-name">Ringo-ame <span class="dish-gloss">candy apple</span></h4>
-        <p class="dish-desc">A whole apple in a shell of hard red candy.<sup class="cite"><a href="#src-37" aria-label="Source 37">37</a></sup></p>
+        <p class="dish-desc">A whole apple in a shell of hard red candy.<sup class="cite"><a href="#src-45" aria-label="Source 45">45</a></sup></p>
         <p class="dish-meta">Summer festivals</p>
       </div>
     </li>
 <li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">チョコバナナ</p>
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="b" d="M26 72 Q22 50 40 42 Q48 22 66 24 Q88 26 92 46 Q100 56 94 72 Z"/>
+<path class="s2" d="M30 70 Q32 54 48 52 Q62 44 76 52 Q90 54 91 70Z"/>
+<path class="n" d="M42 40 l3 3 M60 32 l2 3 M78 38 l-3 3"/>
+<path class="n" d="M74 34 L96 8"/><path class="n" d="M93 12 l6 4"/>
+<path class="s" d="M30 70 H90 L80 104 H40 Z"/><path class="n" d="M36 82 H84"/></g></svg></div>
       <div class="dish-body">
-        <h4 class="dish-name">Choco banana <span class="dish-gloss">chocolate banana</span></h4>
-        <p class="dish-desc">A banana on a stick, dipped in chocolate and covered with sprinkles.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a></sup></p>
-        <p class="dish-meta">Festivals</p>
-      </div>
-    </li>
-<li class="dish dish-amai">
-      <p class="dish-ja" lang="ja">わたあめ</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Wataame <span class="dish-gloss">cotton candy</span></h4>
-        <p class="dish-desc">Cotton candy, spun at the stall.<sup class="cite"><a href="#src-24" aria-label="Source 24">24</a></sup></p>
-        <p class="dish-meta">Festivals</p>
-      </div>
-    </li>
-    </ul>
-  </section><section class="cat cat-kisetsu" id="cat-kisetsu" aria-labelledby="cat-kisetsu-h">
-    <header class="cat-head">
-      <span class="cat-kanji" lang="ja" aria-hidden="true">季</span>
-      <div><h3 id="cat-kisetsu-h" class="cat-title">By the season <span class="cat-ja" lang="ja">季節</span></h3>
-      <p class="cat-intro">Food that belongs to one time of year.</p></div>
-    </header>
-    <ul class="dishes">
-    <li class="dish dish-kisetsu">
-      <p class="dish-ja" lang="ja">かき氷</p>
-      <div class="dish-body">
+        <p class="dish-ja" lang="ja">かき氷</p>
         <h4 class="dish-name">Kakigōri <span class="dish-gloss">shaved ice</span></h4>
-        <p class="dish-desc">Shaved ice with syrup. Sei Shōnagon mentions it in The Pillow Book, about a thousand years ago.<sup class="cite"><a href="#src-39" aria-label="Source 39">39</a></sup></p>
+        <p class="dish-desc">Shaved ice with syrup. Sei Shōnagon mentions it in The Pillow Book, about a thousand years ago.<sup class="cite"><a href="#src-46" aria-label="Source 46">46</a></sup></p>
         <p class="dish-meta">Summer</p>
       </div>
     </li>
-<li class="dish dish-kisetsu">
-      <p class="dish-ja" lang="ja">焼き芋</p>
+<li class="dish dish-amai">
+      <div class="dish-ill"><svg class="ill" viewBox="0 0 120 120" aria-hidden="true"><g class="ln">
+<path class="n" d="M80 18 q-5 -6 0 -12 M94 22 q-5 -6 0 -12"/>
+<path class="s2" d="M36 70 Q30 40 56 28 Q84 16 104 30 Q110 40 96 52 Q76 68 52 72Z"/>
+<path class="s" d="M50 58 Q60 36 96 32 Q90 50 50 58Z"/>
+<path class="b" d="M14 52 H70 L62 106 H22 Z"/><path class="n" d="M14 52 l8 -6 h40 l8 6"/></g></svg></div>
       <div class="dish-body">
+        <p class="dish-ja" lang="ja">焼き芋</p>
         <h4 class="dish-name">Yaki-imo <span class="dish-gloss">stone-roasted sweet potato</span></h4>
-        <p class="dish-desc">Sweet potato slow-roasted on hot stones and sold from trucks with a sung call.<sup class="cite"><a href="#src-40" aria-label="Source 40">40</a></sup></p>
-        <p class="dish-meta">Late autumn · winter</p>
-      </div>
-    </li>
-<li class="dish dish-kisetsu">
-      <p class="dish-ja" lang="ja">甘酒</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Amazake <span class="dish-gloss">sweet rice drink</span></h4>
-        <p class="dish-desc">A sweet drink made from rice koji, under 1% alcohol, served warm at shrines over New Year.<sup class="cite"><a href="#src-41" aria-label="Source 41">41</a></sup></p>
-        <p class="dish-meta">New Year</p>
-      </div>
-    </li>
-<li class="dish dish-kisetsu">
-      <p class="dish-ja" lang="ja">じゃがバター</p>
-      <div class="dish-body">
-        <h4 class="dish-name">Jaga-batā <span class="dish-gloss">butter potato</span></h4>
-        <p class="dish-desc">A steamed potato split open with a slab of butter, sold next to the corn carts in Sapporo.<sup class="cite"><a href="#src-29" aria-label="Source 29">29</a></sup></p>
-        <p class="dish-meta">Hokkaido · summer</p>
+        <p class="dish-desc">Sweet potato slow-roasted on hot stones and sold from trucks with a sung call.<sup class="cite"><a href="#src-47" aria-label="Source 47">47</a></sup></p>
+        <p class="dish-meta">Winter</p>
       </div>
     </li>
     </ul>
   </section>
   </div>
 </section>
-<section id="fukuoka" class="fukuoka" aria-labelledby="fk-h">
-  <div class="wrap">
-    <h2 id="fk-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">福岡の夜</span>A night in Fukuoka</h2>
-    <p class="sec-lede">Fukuoka is the one city where yatai open every night. About 100 stalls set up in three areas, each with a counter for about ten people. <sup class="cite"><a href="#src-1" aria-label="Source 1">1</a>, <a href="#src-11" aria-label="Source 11">11</a></sup></p>
-    <ul class="areas"><li><span class="area-ja" lang="ja">中洲</span><h3 class="area-name">Nakasu</h3><p>Along the Naka River. The best-known row of stalls.</p></li><li><span class="area-ja" lang="ja">天神</span><h3 class="area-name">Tenjin</h3><p>In the shopping district, close to the stations.</p></li><li><span class="area-ja" lang="ja">長浜</span><h3 class="area-name">Nagahama</h3><p>Near the fish market, where the kaedama noodle refill is said to have started.</p></li></ul>
-    <p class="areas-note">Sources for the areas: <sup class="cite"><a href="#src-3" aria-label="Source 3">3</a>, <a href="#src-10" aria-label="Source 10">10</a></sup></p>
-    <div class="fk-grid">
-      <div class="fk-facts"><h3 class="sub-title">Before you go</h3><dl><div><dt>Hours</dt><dd>Most open from around 6pm and stay open late. Each stall sets its own hours. <sup class="cite"><a href="#src-3" aria-label="Source 3">3</a>, <a href="#src-7" aria-label="Source 7">7</a></sup></dd></div><div><dt>Weather</dt><dd>A stall may not open in stormy weather. Check the city's map of open stalls before you go. <sup class="cite"><a href="#src-7" aria-label="Source 7">7</a></sup></dd></div><div><dt>Payment</dt><dd>Most stalls take cash only. Pay when you leave. <sup class="cite"><a href="#src-5" aria-label="Source 5">5</a></sup></dd></div><div><dt>Spend</dt><dd>Go Fukuoka lists average spends of about ¥1,500–2,500 a person. <sup class="cite"><a href="#src-8" aria-label="Source 8">8</a></sup></dd></div><div><dt>Tipping</dt><dd>Not customary in Japan. Pay what the bill says. <sup class="cite"><a href="#src-12" aria-label="Source 12">12</a></sup></dd></div></dl></div>
-      <div class="fk-rules"><h3 class="sub-title">At the counter<sup class="cite"><a href="#src-5" aria-label="Source 5">5</a></sup></h3><ul class="rules"><li>Order at least one drink and one dish each.</li><li>Don't stay too long. Give up your seat when you've finished eating.</li><li>Come in a small group of two or three.</li><li>Leave big luggage in a locker or at your hotel.</li><li>There are no toilets at the stalls. Ask the staff where the nearest one is.</li><li>Most stalls don't do take-away, for hygiene reasons.</li><li>Each stall may post its own rules. When in doubt, ask the owner.</li></ul></div>
-    </div>
-  </div>
-</section>
-<section id="history" class="history" aria-labelledby="hi-h">
-  <div class="wrap">
-    <h2 id="hi-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">歴史</span>A short history</h2>
-    <ol class="timeline"><li><p class="tl-year">869</p><div><h3 class="tl-title">Gion Matsuri begins</h3><p>Kyoto's festival begins as a ritual against plague. Today its yoiyama evenings in mid-July fill central Kyoto with street stalls.<sup class="cite"><a href="#src-16" aria-label="Source 16">16</a>, <a href="#src-17" aria-label="Source 17">17</a></sup></p></div></li><li><p class="tl-year">1603–1868</p><div><h3 class="tl-title">Edo fast food</h3><p>Soba, sushi, tempura and eel are sold from stalls in Edo, some carried on a pole over the shoulder, some set up as fixed stands.<sup class="cite"><a href="#src-14" aria-label="Source 14">14</a>, <a href="#src-15" aria-label="Source 15">15</a></sup></p></div></li><li><p class="tl-year">1770s</p><div><h3 class="tl-title">Imagawayaki</h3><p>Round bean-paste cakes go on sale near Imagawa Bridge in Kanda, Edo.<sup class="cite"><a href="#src-35" aria-label="Source 35">35</a></sup></p></div></li><li><p class="tl-year">1909</p><div><h3 class="tl-title">Taiyaki</h3><p>Naniwaya opens in Azabu-Jūban, Tokyo, and is credited with the fish-shaped version.<sup class="cite"><a href="#src-34" aria-label="Source 34">34</a></sup></p></div></li><li><p class="tl-year">1935</p><div><h3 class="tl-title">Takoyaki</h3><p>Endo Tomekichi of Aizuya in Osaka is credited with putting octopus into the batter balls.<sup class="cite"><a href="#src-20" aria-label="Source 20">20</a>, <a href="#src-19" aria-label="Source 19">19</a></sup></p></div></li><li><p class="tl-year">1955</p><div><h3 class="tl-title">Nagahama</h3><p>The Nagahama fish market opens in Fukuoka. The stalls that fed its workers are said to have started kaedama.<sup class="cite"><a href="#src-10" aria-label="Source 10">10</a></sup></p></div></li><li><p class="tl-year">2013</p><div><h3 class="tl-title">Fukuoka's yatai ordinance</h3><p>The city passes the Yatai Basic Ordinance, setting rules for where and how stalls operate.<sup class="cite"><a href="#src-2" aria-label="Source 2">2</a></sup></p></div></li><li><p class="tl-year">2016</p><div><h3 class="tl-title">Open recruitment</h3><p>Fukuoka starts choosing new stall operators by public application and screening.<sup class="cite"><a href="#src-3" aria-label="Source 3">3</a></sup></p></div></li><li><p class="tl-year">2026</p><div><h3 class="tl-title">Sixth round</h3><p>102 people apply for 23 stall sites.<sup class="cite"><a href="#src-4" aria-label="Source 4">4</a></sup></p></div></li></ol>
-  </div>
-</section>
-<section id="calendar" class="calendar" aria-labelledby="ca-h">
-  <div class="wrap">
-    <h2 id="ca-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">暦</span>When to go</h2>
-    <ul class="cal"><li><p class="cal-when">Jan 1–3</p><h3 class="cal-what">Hatsumōde</h3><p class="cal-text">New Year shrine visits. Warm amazake is served at shrines.<sup class="cite"><a href="#src-41" aria-label="Source 41">41</a></sup></p></li><li><p class="cal-when">Early Feb</p><h3 class="cal-what">Sapporo Snow Festival</h3><p class="cal-text">Usually 4–11 February, in Odori Park.<sup class="cite"><a href="#src-18" aria-label="Source 18">18</a></sup></p></li><li><p class="cal-when">Late Apr – mid Oct</p><h3 class="cal-what">Sapporo corn carts</h3><p class="cal-text">Grilled corn and butter potatoes in Odori Park.<sup class="cite"><a href="#src-28" aria-label="Source 28">28</a></sup></p></li><li><p class="cal-when">Jul 15–16</p><h3 class="cal-what">Gion Matsuri yoiyama</h3><p class="cal-text">Central Kyoto closes to cars from about 6pm to 11pm and the streets fill with stalls.<sup class="cite"><a href="#src-17" aria-label="Source 17">17</a></sup></p></li><li><p class="cal-when">Summer</p><h3 class="cal-what">Festival season</h3><p class="cal-text">Shaved ice, candy apples and grilled corn.<sup class="cite"><a href="#src-39" aria-label="Source 39">39</a>, <a href="#src-37" aria-label="Source 37">37</a></sup></p></li><li><p class="cal-when">Late autumn – winter</p><h3 class="cal-what">Cold-weather stalls</h3><p class="cal-text">Stone-roasted sweet potatoes and oden.<sup class="cite"><a href="#src-40" aria-label="Source 40">40</a>, <a href="#src-33" aria-label="Source 33">33</a></sup></p></li><li><p class="cal-when">Every evening</p><h3 class="cal-what">Fukuoka</h3><p class="cal-text">About 100 stalls, weather permitting.<sup class="cite"><a href="#src-1" aria-label="Source 1">1</a>, <a href="#src-7" aria-label="Source 7">7</a></sup></p></li></ul>
-  </div>
-</section>
 <section id="sources" class="sources" aria-labelledby="so-h">
   <div class="wrap">
     <h2 id="so-h" class="sec-title"><span class="sec-ja" lang="ja" aria-hidden="true">出典</span>Sources</h2>
-    <p class="sec-lede">Facts on this page were checked in November 2026 against the sources below. Where a story is a tradition rather than a record, the text says so.</p>
-    <ol><li id="src-1"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/charm/yataiQA.html" rel="noopener" target="_blank">Fukuoka City — Yatai Q&amp;A (屋台Q&amp;A)</a></li><li id="src-2"><a href="https://www.city.fukuoka.lg.jp/d1w_reiki/reiki_honbun/q003RG00001250.html" rel="noopener" target="_blank">Fukuoka City — Yatai Basic Ordinance (福岡市屋台基本条例), 2013</a></li><li id="src-3"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/shisei/yataikoubo.html" rel="noopener" target="_blank">Fukuoka City — Yatai operator recruitment (屋台営業候補者の公募)</a></li><li id="src-4"><a href="https://www.city.fukuoka.lg.jp/shisei/kouhou-hodo/hodo-happyo/2026/documents/260612yataieigyoukouhosyanobosyuujoukyounituite.pdf" rel="noopener" target="_blank">Fukuoka City — 2026 recruitment status (press release PDF)</a></li><li id="src-5"><a href="https://gofukuoka.jp/yatai-howto.html" rel="noopener" target="_blank">Go Fukuoka — How to enjoy yatai</a></li><li id="src-6"><a href="https://gofukuoka.jp/yatai-food.html" rel="noopener" target="_blank">Go Fukuoka — Yatai food</a></li><li id="src-7"><a href="https://gofukuoka.jp/yatai.html" rel="noopener" target="_blank">Go Fukuoka — Yatai</a></li><li id="src-8"><a href="https://gofukuoka.jp/spots/detail/yatai122532" rel="noopener" target="_blank">Go Fukuoka — Yatai listing (example average spend)</a></li><li id="src-9"><a href="https://gofukuoka.jp/articles/detail/fbfd4d95-4889-46be-bf2e-4515bc82522f" rel="noopener" target="_blank">Go Fukuoka — Hakata gyoza</a></li><li id="src-10"><a href="https://www.japan.travel/en/sg/story/ramen/" rel="noopener" target="_blank">Japan National Tourism Organization — The story of ramen</a></li><li id="src-11"><a href="https://www.japan.travel/en/spot/273/" rel="noopener" target="_blank">Japan National Tourism Organization — Fukuoka yatai</a></li><li id="src-12"><a href="https://www.japan.travel/en/plan/tipping-in-japan/" rel="noopener" target="_blank">Japan National Tourism Organization — Tipping in Japan</a></li><li id="src-13"><a href="https://www.japan.travel/en/uk/inspiration/33-japanese-festivals-added-to-unesco-list/" rel="noopener" target="_blank">Japan National Tourism Organization — 33 festivals added to UNESCO list</a></li><li id="src-14"><a href="https://www.nippon.com/en/japan-topics/g00940/" rel="noopener" target="_blank">nippon.com — Edo-period fast food</a></li><li id="src-15"><a href="https://www.nippon.com/en/japan-topics/g00962/" rel="noopener" target="_blank">nippon.com — Edo food culture</a></li><li id="src-16"><a href="https://www.yasaka-jinja.or.jp/en/gion_fes/" rel="noopener" target="_blank">Yasaka Shrine — Gion Matsuri</a></li><li id="src-17"><a href="https://kyoto.travel/en/travel-inspiration/gion-matsuri-festival/" rel="noopener" target="_blank">Kyoto City Tourism — Gion Matsuri</a></li><li id="src-18"><a href="https://www.snowfes.com/en/news/882.html" rel="noopener" target="_blank">Sapporo Snow Festival — official site</a></li><li id="src-19"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/4762/index.html" rel="noopener" target="_blank">Ministry of Agriculture (MAFF) — Takoyaki</a></li><li id="src-20"><a href="https://en.wikipedia.org/wiki/Takoyaki" rel="noopener" target="_blank">Wikipedia — Takoyaki</a></li><li id="src-21"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/5798/index.html" rel="noopener" target="_blank">MAFF — Osaka okonomiyaki</a></li><li id="src-22"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/2805/index.html" rel="noopener" target="_blank">MAFF — Hiroshima okonomiyaki</a></li><li id="src-23"><a href="https://www.japantimes.co.jp/life/2019/05/18/food/yakisoba-stir-fried-noodles-quick-easy-adaptable-meal/" rel="noopener" target="_blank">The Japan Times — Yakisoba</a></li><li id="src-24"><a href="https://web-japan.org/kidsweb/cool/13-08-26/index.html" rel="noopener" target="_blank">Web Japan — Festival food stalls</a></li><li id="src-25"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/5030/index.html" rel="noopener" target="_blank">MAFF — Yakitori</a></li><li id="src-26"><a href="https://japantimes.co.jp/life/2001/04/01/food/squid-tentacles-draw-the-crowds" rel="noopener" target="_blank">The Japan Times — Squid tentacles draw the crowds</a></li><li id="src-27"><a href="https://japantoday.com/category/features/food/tired-of-your-usual-camping-fare-try-this-easy-japanese-festival-favorite" rel="noopener" target="_blank">Japan Today — Hashimaki, a festival favourite</a></li><li id="src-28"><a href="https://www.sapporo.travel/en/gourmet/feature/hokkaido_summer_foods/" rel="noopener" target="_blank">Sapporo Travel — Hokkaido summer foods</a></li><li id="src-29"><a href="https://www.gltjp.com/en/article/item/20869/" rel="noopener" target="_blank">Guidable Japan (gltjp) — Odori Park corn stalls</a></li><li id="src-30"><a href="https://www.pbs.org/food/stories/matsuri-japanese-festival" rel="noopener" target="_blank">PBS Food — Matsuri food</a></li><li id="src-31"><a href="https://www.kikkoman.com/en/culture/foodforum/close-up-japan/33-3.html" rel="noopener" target="_blank">Kikkoman Food Forum — Karaage</a></li><li id="src-32"><a href="https://osaka-info.jp/en/gourmet/gastronomy-kushikatsu/" rel="noopener" target="_blank">Osaka Info — Kushikatsu</a></li><li id="src-33"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/1161/index.html" rel="noopener" target="_blank">MAFF — Oden</a></li><li id="src-34"><a href="https://shun-gate.com/en/power/power_104/" rel="noopener" target="_blank">Shun Gate — Naniwaya taiyaki</a></li><li id="src-35"><a href="https://www.nippon.com/en/japan-data/h01563/" rel="noopener" target="_blank">nippon.com — Imagawayaki's regional names</a></li><li id="src-36"><a href="https://www.nippon.com/en/guide-to-japan/gu900253/" rel="noopener" target="_blank">nippon.com — Mitarashi dango</a></li><li id="src-37"><a href="https://web-japan.org/kidsweb/cool/23/202301_festival-street-food_en.html" rel="noopener" target="_blank">Web Japan — Festival street food (2023)</a></li><li id="src-38"><a href="https://www.japan.travel/en/sg/story/instagrammable-and-traditional-stalls-summer-festival-japaneseni/" rel="noopener" target="_blank">Japan National Tourism Organization — Summer festival stalls</a></li><li id="src-39"><a href="https://nippon.com/en/features/jg00104/kakigori.html" rel="noopener" target="_blank">nippon.com — Kakigōri</a></li><li id="src-40"><a href="https://www.nippon.com/en/guide-to-japan/cs00037/" rel="noopener" target="_blank">nippon.com — Yaki-imo</a></li><li id="src-41"><a href="https://www.kikkoman.com/en/culture/foodforum/close-up-japan/31-3.html" rel="noopener" target="_blank">Kikkoman Food Forum — Amazake</a></li></ol>
+    <p class="sec-lede">Checked in November 2026. Where a story is a tradition rather than a record, the text says so. Some Fukuoka City pages were read through search excerpts, so check the originals if you quote them.</p>
+    <ol><li id="src-1"><a href="https://kotobank.jp/word/%E5%B1%8B%E5%8F%B0-648499" rel="noopener" target="_blank">Kotobank — 屋台 (デジタル大辞泉 / 世界大百科事典)</a></li><li id="src-2"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/charm/yataiQA.html" rel="noopener" target="_blank">Fukuoka City — Yatai Q&amp;A</a></li><li id="src-3"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/charm/yataiayumi.html" rel="noopener" target="_blank">Fukuoka City — History of Fukuoka's yatai (屋台のあゆみ)</a></li><li id="src-4"><a href="https://www.city.fukuoka.lg.jp/d1w_reiki/reiki_honbun/q003RG00001250.html" rel="noopener" target="_blank">Fukuoka City — Yatai Basic Ordinance (2013)</a></li><li id="src-5"><a href="https://www.city.fukuoka.lg.jp/d1w_reiki/reiki_honbun/q003RG00001253.html" rel="noopener" target="_blank">Fukuoka City — Ordinance enforcement rules (施行規則)</a></li><li id="src-6"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/shisei/documents/01_rule.pdf" rel="noopener" target="_blank">Fukuoka City — Yatai rules sheet (PDF)</a></li><li id="src-7"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/shisei/documents/02_setsubinoshiyounitsuite.pdf" rel="noopener" target="_blank">Fukuoka City — Use of city-installed stall equipment (PDF)</a></li><li id="src-8"><a href="https://www.city.fukuoka.lg.jp/keizai/kankou/shisei/documents/shiryou6.pdf" rel="noopener" target="_blank">Fukuoka City — Operator obligations, storage and transport (PDF)</a></li><li id="src-9"><a href="https://www.city.fukuoka.lg.jp/keizai/kankou/shisei/documents/01_dourosenyounitsuite.pdf" rel="noopener" target="_blank">Fukuoka City — Road occupancy permits for yatai (PDF)</a></li><li id="src-10"><a href="https://www.city.fukuoka.lg.jp/keizai/yatai/shisei/yataikoubo.html" rel="noopener" target="_blank">Fukuoka City — Yatai operator recruitment</a></li><li id="src-11"><a href="https://www.city.fukuoka.lg.jp/shisei/kouhou-hodo/hodo-happyo/2026/documents/260612yataieigyoukouhosyanobosyuujoukyounituite.pdf" rel="noopener" target="_blank">Fukuoka City — 2026 recruitment status (PDF)</a></li><li id="src-12"><a href="https://data-max.co.jp/article/24272" rel="noopener" target="_blank">Data Max — Fukuoka yatai road-use rules</a></li><li id="src-13"><a href="https://data-max.co.jp/article/27270" rel="noopener" target="_blank">Data Max — Fukuoka yatai ordinance: transfers and name-lending</a></li><li id="src-14"><a href="https://jichisoken.jp/file/monthly/2013/09/ashimada1309.pdf" rel="noopener" target="_blank">Shimada, 自治総研 (Sept. 2013) — on the Fukuoka yatai ordinance (PDF)</a></li><li id="src-15"><a href="https://gofukuoka.jp/yatai-howto.html" rel="noopener" target="_blank">Go Fukuoka (official city tourism) — How to enjoy yatai</a></li><li id="src-16"><a href="https://gofukuoka.jp/yatai-food.html" rel="noopener" target="_blank">Go Fukuoka — Yatai food</a></li><li id="src-17"><a href="https://www.japan.travel/en/spot/273/" rel="noopener" target="_blank">Japan National Tourism Organization — Fukuoka yatai</a></li><li id="src-18"><a href="https://japantimes.co.jp/community/2001/06/17/general/fukuokas-asian-flavor" rel="noopener" target="_blank">The Japan Times (2001) — Fukuoka's Asian flavor</a></li><li id="src-19"><a href="https://www.kyotojournal.org/?p=833" rel="noopener" target="_blank">Kyoto Journal — Tekiya, the festival stallholders</a></li><li id="src-20"><a href="https://www.city.funabashi.lg.jp/shisei/shoukai/006/p061492_d/fil/onegai.pdf" rel="noopener" target="_blank">Funabashi City Fire Department — Rules for festival stalls (PDF)</a></li><li id="src-21"><a href="https://www.nippon.com/en/japan-topics/g00940/" rel="noopener" target="_blank">nippon.com — Edo-period fast food: soba</a></li><li id="src-22"><a href="https://www.nippon.com/en/japan-topics/g00962/" rel="noopener" target="_blank">nippon.com — Edo-period fast food: sushi</a></li><li id="src-23"><a href="https://www.kikkoman.com/en/kiifc/journal/pdf_12/e_002_006.pdf" rel="noopener" target="_blank">Kikkoman Institute for International Food Culture — Edo's population (PDF)</a></li><li id="src-24"><a href="https://www.library.metro.tokyo.lg.jp/portals/0/edo/tokyo_library/english/gourmet/page1-1.html" rel="noopener" target="_blank">Tokyo Metropolitan Library — Edo gourmet: soba</a></li><li id="src-25"><a href="https://geidai.ac.jp/labs/koizumi/gcat0/english/html-text/591.html" rel="noopener" target="_blank">Tokyo University of the Arts — Charumera</a></li><li id="src-26"><a href="https://www.nippon.com/en/japan-topics/c13801/" rel="noopener" target="_blank">nippon.com — Tonkotsu ramen and the postwar stalls</a></li><li id="src-27"><a href="https://smtrc.jp/town-archives/city/ginza/p08.html" rel="noopener" target="_blank">Sumitomo Mitsui Trust Research, Kono Machi Archives — Ginza's street stalls</a></li><li id="src-28"><a href="https://www.japan.travel/en/sg/story/ramen/" rel="noopener" target="_blank">Japan National Tourism Organization — The story of ramen</a></li><li id="src-29"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/4762/index.html" rel="noopener" target="_blank">Ministry of Agriculture (MAFF) — Takoyaki</a></li><li id="src-30"><a href="https://en.wikipedia.org/wiki/Takoyaki" rel="noopener" target="_blank">Wikipedia — Takoyaki</a></li><li id="src-31"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/5798/index.html" rel="noopener" target="_blank">MAFF — Osaka okonomiyaki</a></li><li id="src-32"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/2805/index.html" rel="noopener" target="_blank">MAFF — Hiroshima okonomiyaki</a></li><li id="src-33"><a href="https://www.japantimes.co.jp/life/2019/05/18/food/yakisoba-stir-fried-noodles-quick-easy-adaptable-meal/" rel="noopener" target="_blank">The Japan Times — Yakisoba</a></li><li id="src-34"><a href="https://web-japan.org/kidsweb/cool/13-08-26/index.html" rel="noopener" target="_blank">Web Japan — Festival food stalls</a></li><li id="src-35"><a href="https://japantimes.co.jp/life/2001/04/01/food/squid-tentacles-draw-the-crowds" rel="noopener" target="_blank">The Japan Times — Squid tentacles draw the crowds</a></li><li id="src-36"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/5030/index.html" rel="noopener" target="_blank">MAFF — Yakitori</a></li><li id="src-37"><a href="https://www.sapporo.travel/en/gourmet/feature/hokkaido_summer_foods/" rel="noopener" target="_blank">Sapporo Travel — Hokkaido summer foods</a></li><li id="src-38"><a href="https://www.kikkoman.com/en/culture/foodforum/close-up-japan/33-3.html" rel="noopener" target="_blank">Kikkoman Food Forum — Karaage</a></li><li id="src-39"><a href="https://www.pbs.org/food/stories/matsuri-japanese-festival" rel="noopener" target="_blank">PBS Food — Matsuri food</a></li><li id="src-40"><a href="https://www.maff.go.jp/e/policies/market/k_ryouri/search_menu/1161/index.html" rel="noopener" target="_blank">MAFF — Oden</a></li><li id="src-41"><a href="https://gofukuoka.jp/articles/detail/fbfd4d95-4889-46be-bf2e-4515bc82522f" rel="noopener" target="_blank">Go Fukuoka — Hakata gyoza</a></li><li id="src-42"><a href="https://shun-gate.com/en/power/power_104/" rel="noopener" target="_blank">Shun Gate — Naniwaya taiyaki</a></li><li id="src-43"><a href="https://www.nippon.com/en/japan-data/h01563/" rel="noopener" target="_blank">nippon.com — Imagawayaki's regional names</a></li><li id="src-44"><a href="https://www.nippon.com/en/guide-to-japan/gu900253/" rel="noopener" target="_blank">nippon.com — Mitarashi dango</a></li><li id="src-45"><a href="https://web-japan.org/kidsweb/cool/23/202301_festival-street-food_en.html" rel="noopener" target="_blank">Web Japan — Festival street food (2023)</a></li><li id="src-46"><a href="https://nippon.com/en/features/jg00104/kakigori.html" rel="noopener" target="_blank">nippon.com — Kakigōri</a></li><li id="src-47"><a href="https://www.nippon.com/en/guide-to-japan/cs00037/" rel="noopener" target="_blank">nippon.com — Yaki-imo</a></li></ol>
   </div>
 </section>
 </main>
 <footer class="site-foot">
   <div class="wrap">
     <p class="foot-mark" lang="ja" aria-hidden="true">屋台</p>
-    <p>Yatai — Japan's food stalls. Design A: Chōchin (lantern night).</p>
-    <p class="foot-small">Text checked against the sources listed above. No affiliation with any organisation cited.</p>
+    <p>Yatai, Japan's food stalls. Design A: Chōchin (lantern night).</p>
+    <p class="foot-small">Drawings made for this site. Text checked against the sources listed above.</p>
   </div>
 </footer>
 </body>

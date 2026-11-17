@@ -61,12 +61,12 @@ MIT — free to use, adapt, and share.
 
 ## Redesign proposals (`designs/`)
 
-Three alternative designs share the same rewritten, sourced content. Open any of them directly in a browser:
+Alternative designs that share the same sourced content. They cover how a stall is built and run, its history, and 18 dishes, each with an original line drawing. Open any of them directly in a browser:
 
 | File | Direction |
 |---|---|
-| `designs/a-chochin.html` | **Chōchin**: a stall at night, with hanging paper lanterns and the menu set like a printed counter card. |
-| `designs/b-fuda.html` | **Fuda**: a cedar menu board with hanging paper tags brushed in sumi ink and red seal stamps. |
-| `designs/c-matsuri.html` | **Matsuri**: a flat-colour festival poster, with a wave pattern, a noren curtain index and a CSS-only menu filter. |
+| `designs/a-chochin.html` | **Chōchin**: a stall at night, with hanging paper lanterns and pale line drawings on dark. |
+| `designs/b-fuda.html` | **Fuda**: a cedar menu board, with hanging paper tags brushed in sumi ink and red seal stamps. |
+| `designs/c-techo.html` | **Techō**: a cook's sketchbook, with squared paper, washi tape and marker colour. |
 
-Each design is a single file with no JavaScript. Each one includes a 25-dish menu grouped by cooking method, a Fukuoka visitor guide, a timeline, a festival calendar and a numbered source list. `index.html` has not changed.
+Each design is a single file with no JavaScript. `index.html` has not changed.
