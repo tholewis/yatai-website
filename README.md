@@ -1,42 +1,34 @@
-# 屋台 Yatai — The Soul of Japanese Street Food
+# 屋台 Yatai: Japan's food stalls
 
-A single-page website celebrating the culture, history, and flavours of Japanese yatai (屋台) — the iconic street food stalls that have been a cornerstone of Japanese life since the Edo period.
+A single-page website about Japanese yatai (屋台), the food stalls: how a stall is built and run, where stalls came from, and the food they cook.
 
 ## Live Demo
 
-Open `index.html` in any modern browser — no build step required. Or go to https://tholewis.github.io/yatai-website/ to view the website hosted by GitHub Pages.
+Open `index.html` in any modern browser, with no build step. Or go to https://tholewis.github.io/yatai-website/ to view the site on GitHub Pages.
 
 ## Features
 
-- **Hero section** with animated hanging lanterns and a full-bleed atmospheric background
-- **Introduction** — what yatai are and why they matter
-- **History timeline** — four centuries of street food culture, from Edo push-carts to Fukuoka's licensed stalls
-- **Food guide** — cards for Tonkotsu Ramen, Takoyaki, Yakitori, Gyoza, Oden, and Taiyaki with regional origins and flavour notes
-- **The Yatai Experience** — the customs, etiquette, and atmosphere of eating at a stall
-- **Regions** — Fukuoka, Tokyo, Osaka, and Kyoto yatai scenes
-- **Festivals calendar** — Hakata Dontaku, Tenjin Matsuri, Obon, and Gion Matsuri
-- **Responsive design** — works on desktop and mobile
-- **Zero dependencies** — pure HTML and CSS, no frameworks or build tools
+- **What a yatai is:** the word's two meanings, from the dictionary.
+- **How a stall works:** a labelled drawing of a stall, one night from set-up to clear-up, Fukuoka's operating rules, the counter etiquette, and how festival stalls differ.
+- **History:** from Edo's night soba sellers to Fukuoka's 2013 ordinance and new operators chosen since 2016.
+- **Food:** 18 dishes in four groups (griddle, grill and fryer, pot, sweet), each with an original drawing.
+- **Responsive:** works from phone width up, with no horizontal scrolling.
+- **Zero dependencies:** HTML and CSS only, no JavaScript, frameworks or build tools.
 
 ## Tech Stack
 
 | Layer | Details |
 |-------|---------|
 | Markup | Semantic HTML5 |
-| Styles | Vanilla CSS (custom properties, grid, flexbox, animations) |
-| Fonts | Google Fonts — Noto Serif JP, Noto Sans JP, Playfair Display |
-| Images | Inline SVG illustrations |
-
-## Browser Support
-
-Tested in Chrome, Firefox, Safari (including iOS), and Edge.
-Vendor prefixes (`-webkit-backdrop-filter`, `-webkit-user-select`) are included for full Safari compatibility.
+| Styles | Vanilla CSS (custom properties, grid, flexbox) |
+| Fonts | Google Fonts: Klee One, Atkinson Hyperlegible |
+| Images | Original inline SVG line drawings |
 
 ## Project Structure
 
 ```
 yatai-website/
-└── index.html   # Entire site — styles, markup, and SVG assets in one file
+└── index.html   # The site: styles, markup and SVG drawings in one file
 ```
 
 ## Getting Started
@@ -50,11 +42,11 @@ open index.html   # macOS
 
 ## Design Decisions
 
-- **Single-file architecture** — keeps the project portable and easy to share without a server or bundler.
-- **CSS custom properties** — a consistent colour palette (`--red`, `--gold`, `--ink`, `--cream`) used throughout.
-- **Japanese typography** — Noto Serif JP for display text and kanji watermarks; Playfair Display for English headings to evoke a editorial quality.
-- **Accessibility** — semantic elements (`<section>`, `<nav>`, `<footer>`), sufficient colour contrast on body text, and `pointer-events: none` on decorative elements.
+- **Sketchbook look (Techō):** squared paper, washi tape, handwritten headings and marker colour suit a site built around drawings.
+- **Single-file architecture:** keeps the project portable and easy to share without a server or bundler.
+- **Checked content:** every fact was checked against a source when written. Traditions are labelled as traditions.
+- **Accessibility:** skip link, semantic sections, `lang="ja"` on Japanese text, visible focus outlines and reduced-motion support.
 
 ## License
 
-MIT — free to use, adapt, and share.
+MIT: free to use, adapt and share.
